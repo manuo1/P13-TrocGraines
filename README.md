@@ -10,6 +10,6 @@ TrocGraine serra le projet final de mon parcour de Développeur d'application en
 
 ## REQUIS:
 
-• Implémenté dans le projet les 12 bonnes pratiques de l’Xtreme programming
+• Implémenter dans le projet les 12 bonnes pratiques de l’Xtreme programming
 
 

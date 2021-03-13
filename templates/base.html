@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>Troc Graines</title>
+  </head>
+  <body>
+
+    <!-- navigation bar -->
+    <nav id="navbar">
+      <hr>
+      <a>Barre de navigation</a>
+      <ul>
+        <li><a href="#">Logo</a></li>
+        <li><a href="#">Troc Graines</a></li>
+        <li><a href="#">Ajouter une graine à partager</a></li>
+        <li><a href="#">Mon compte</a></li>
+      </ul>
+      <hr>
+    </nav>
+
+    <!-- my account navigation bar -->
+    <nav id="my_account_navbar">
+      <a>Barre de navigation mon compte</a>
+      <ul>
+        <li><a href="#">formulaire de connexion</a></li>
+        <li><a href="#">Connexion</a></li>
+        <li><a href="#">Créer un compte</a></li>
+        <li><a href="#">Mot de passe oublié</a></li>
+      </ul>
+    </nav>
+
+    <!-- main -->
+    <main>
+      {% block main %}
+      {% endblock %}
+    </main>
+
+     <!-- footer -->
+     <footer>
+       <hr>
+       <a>footer</a>
+       <ul>
+         <li><a href="#">Mention légales</a></li>
+         <li><a href="#">Contact</a></li>
+       </ul>
+       <hr>
+     </footer>
+  </body>
+</html>

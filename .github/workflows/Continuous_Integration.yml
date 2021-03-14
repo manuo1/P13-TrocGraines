@@ -21,11 +21,11 @@ jobs:
       matrix:
         python-version: [3.8]
     env:
-      ENVIRONMENT: 'production'
-      SECRET_KEY: 'secret_key'
-      DATABASES_NAME: 'purbeurredb'
-      DATABASES_USER: 'manuo'
-      DATABASES_PASSWORD: 'mdp'
+      ENVIRONMENT: 'development'
+      SECRET_KEY: 'test_secret_key'
+      DATABASES_NAME: 'test_database'
+      DATABASES_USER: 'test_user'
+      DATABASES_PASSWORD: 'test_password'
     services:
       postgres:
         # Docker Hub image

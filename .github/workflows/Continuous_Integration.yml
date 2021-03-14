@@ -32,7 +32,7 @@ jobs:
         image: postgres
         # Provide the data for postgreSQL
         env:
-          POSTGRES_DB: 'test_database '
+          POSTGRES_DB: 'test_database'
           POSTGRES_USER: 'test_user'
           POSTGRES_PASSWORD: 'test_password'
         # Set health checks to wait until postgres has started

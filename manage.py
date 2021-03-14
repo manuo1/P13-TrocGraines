@@ -11,9 +11,9 @@ def main():
     """ this part will load environment variable and designate the """
     """ right settings file to use depending on the environment"""
     try:
+        os.environ['ENVIRONMENT']
+    except KeyError:
         load_dotenv(find_dotenv())
-    except ModuleNotFoundError:
-        pass
     environment = os.environ['ENVIRONMENT']
     os.environ.setdefault(
         'DJANGO_SETTINGS_MODULE',

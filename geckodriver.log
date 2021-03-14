@@ -1,0 +1,61 @@
+1615718330247	geckodriver	INFO	Listening on 127.0.0.1:44359
+1615718331093	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilet1xPpT"
+*** You are running in headless mode.
+
+(/usr/lib/firefox/firefox:8630): GLib-GObject-CRITICAL **: 11:38:57.066: g_object_set: assertion 'G_IS_OBJECT (object)' failed
+
+(/usr/lib/firefox/firefox:8656): GLib-GObject-CRITICAL **: 11:38:57.172: g_object_set: assertion 'G_IS_OBJECT (object)' failed
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1615718341373	Marionette	INFO	Listening on port 34363
+
+(/usr/lib/firefox/firefox:8728): GLib-GObject-CRITICAL **: 11:39:01.424: g_object_set: assertion 'G_IS_OBJECT (object)' failed
+1615718341534	Marionette	WARN	TLS certificate errors will be ignored for this session
+1615718348601	Marionette	INFO	Stopped listening on port 34363
+JavaScript error: resource://activity-stream/lib/ASRouter.jsm, line 988: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIObserverService.removeObserver]
+1615718446149	geckodriver	INFO	Listening on 127.0.0.1:37423
+1615718446153	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofilevTsDRX"
+*** You are running in headless mode.
+
+(/usr/lib/firefox/firefox:8877): GLib-GObject-CRITICAL **: 11:40:49.733: g_object_set: assertion 'G_IS_OBJECT (object)' failed
+
+(/usr/lib/firefox/firefox:8898): GLib-GObject-CRITICAL **: 11:40:49.821: g_object_set: assertion 'G_IS_OBJECT (object)' failed
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+1615718454116	Marionette	INFO	Listening on port 45805
+
+(/usr/lib/firefox/firefox:8978): GLib-GObject-CRITICAL **: 11:40:54.161: g_object_set: assertion 'G_IS_OBJECT (object)' failed
+1615718454231	Marionette	WARN	TLS certificate errors will be ignored for this session
+1615718461297	Marionette	INFO	Stopped listening on port 45805
+JavaScript error: resource://gre/modules/UrlClassifierListManager.jsm, line 691: TypeError: this.tablesData[table] is undefined
+JavaScript error: resource://activity-stream/lib/ASRouter.jsm, line 988: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIObserverService.removeObserver]
+1615718527763	geckodriver	INFO	Listening on 127.0.0.1:49933
+1615718527767	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofiledV45Vt"
+*** You are running in headless mode.
+
+(/usr/lib/firefox/firefox:9135): GLib-GObject-CRITICAL **: 11:42:21.707: g_object_set: assertion 'G_IS_OBJECT (object)' failed
+
+(/usr/lib/firefox/firefox:9156): GLib-GObject-CRITICAL **: 11:42:21.796: g_object_set: assertion 'G_IS_OBJECT (object)' failed
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.error: Region.jsm: "Error fetching region" (new Error("TIMEOUT", "resource://gre/modules/Region.jsm", 775))
+console.error: Region.jsm: "Failed to fetch region" (new Error("TIMEOUT", "resource://gre/modules/Region.jsm", 422))
+1615718560548	Marionette	INFO	Listening on port 40581
+
+(/usr/lib/firefox/firefox:9240): GLib-GObject-CRITICAL **: 11:42:40.573: g_object_set: assertion 'G_IS_OBJECT (object)' failed
+1615718560586	Marionette	WARN	TLS certificate errors will be ignored for this session
+1615718589673	Marionette	INFO	Stopped listening on port 40581
+JavaScript error: resource://activity-stream/lib/ASRouter.jsm, line 988: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIObserverService.removeObserver]
+1615718643835	geckodriver	INFO	Listening on 127.0.0.1:52901
+1615718643839	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "-foreground" "-no-remote" "-profile" "/tmp/rust_mozprofileU7q4wS"
+*** You are running in headless mode.
+
+(/usr/lib/firefox/firefox:9409): GLib-GObject-CRITICAL **: 11:44:18.488: g_object_set: assertion 'G_IS_OBJECT (object)' failed
+
+(/usr/lib/firefox/firefox:9430): GLib-GObject-CRITICAL **: 11:44:18.577: g_object_set: assertion 'G_IS_OBJECT (object)' failed
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new Error("", "(unknown module)"))
+console.error: Region.jsm: "Error fetching region" (new Error("TIMEOUT", "resource://gre/modules/Region.jsm", 775))
+console.error: Region.jsm: "Failed to fetch region" (new Error("TIMEOUT", "resource://gre/modules/Region.jsm", 422))
+1615718675426	Marionette	INFO	Listening on port 39151
+1615718675451	Marionette	WARN	TLS certificate errors will be ignored for this session
+
+(/usr/lib/firefox/firefox:9514): GLib-GObject-CRITICAL **: 11:44:35.474: g_object_set: assertion 'G_IS_OBJECT (object)' failed
+1615718730103	Marionette	INFO	Stopped listening on port 39151
+JavaScript error: resource://activity-stream/lib/ASRouter.jsm, line 988: NS_ERROR_ILLEGAL_VALUE: Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIObserverService.removeObserver]

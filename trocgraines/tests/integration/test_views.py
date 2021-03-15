@@ -8,6 +8,6 @@ class TestTrocgrainesViews(TestCase):
     """ homepage view Tests """
 
     def test_if_homepage_view_return_homepage_template(self):
-        response = self.client.get(reverse('homepage'))
+        response = self.client.get(reverse('trocgraines:homepage'))
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, 'homepage.html')

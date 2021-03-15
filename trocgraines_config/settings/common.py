@@ -31,7 +31,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'trocgraines',
-
+    'authentication',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +126,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+# authentication 
+AUTH_USER_MODEL = "authentication.User"
+LOGIN_REDIRECT_URL = 'trocgraines:homepage'
+LOGOUT_REDIRECT_URL = 'trocgraines:homepage'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -5,3 +5,4 @@ __pycache__
 .coverage
 .coveragerc
 staticfiles
+geckodriver.log

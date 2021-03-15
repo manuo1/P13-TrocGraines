@@ -6,5 +6,5 @@ from trocgraines.views import homepage
 
 class TestAppUsersUrls(SimpleTestCase):
     def test_homepage_url_resolves(self):
-        url = reverse('homepage')
+        url = reverse('trocgraines:homepage')
         self.assertEquals(resolve(url).func, homepage)

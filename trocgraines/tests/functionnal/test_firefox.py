@@ -1,6 +1,7 @@
 from django.test import LiveServerTestCase
 from django.urls import reverse
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 
 firefox_options = webdriver.FirefoxOptions()
 firefox_options.add_argument('--headless')
@@ -23,14 +24,12 @@ class FirefoxFunctionalTestCases(LiveServerTestCase):
         cls.driver.quit()
 
     def setUp(self):
-        self.driver.get(self.live_server_url)
+        pass
 
     def test_homepage(self):
-        """test simple homepage display."""
-        self.go_to_url_name('homepage')
-        id_seed_search_form_is_present = self.find_id("seed_search_form")
-        self.assertTrue(id_seed_search_form_is_present)
-
+        """ test simple homepage display """
+        self.go_to_url_name('trocgraines:homepage')
+        self.assertTrue(self.element_is_present('seed_search_form'))
 
 
     """ some methods to improve the readability of tests """
@@ -39,7 +38,9 @@ class FirefoxFunctionalTestCases(LiveServerTestCase):
         """ access a web page with its URL name  """
         self.driver.get(self.live_server_url + reverse(url_name))
 
-    def find_id(self, id):
-        """ return the element found by its id """
-        element = self.driver.find_element_by_id(id)
-        return element
+    def element_is_present(self, id):
+        try:
+            self.driver.find_element_by_id(id)
+            return True
+        except NoSuchElementException:
+            return False

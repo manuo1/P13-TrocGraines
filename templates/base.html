@@ -2,7 +2,10 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8">
-    <title>Troc Graines</title>
+    <title>
+      {% block title %}Troc Graines{% endblock %}
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   </head>
   <body>
 
@@ -14,7 +17,7 @@
         <li><a href="#">Logo</a></li>
         <li><a href="#">Troc Graines</a></li>
         <li><a href="#">Ajouter une graine à partager</a></li>
-        <li><a href="#">Mon compte</a></li>
+        <li><a href="#">Mon compte {% if user.is_authenticated %} <br>( {{user.username}} ){% endif %}</a></li>
       </ul>
       <hr>
     </nav>
@@ -23,10 +26,16 @@
     <nav id="my_account_navbar">
       <a>Barre de navigation mon compte</a>
       <ul>
-        <li><a href="#">formulaire de connexion</a></li>
-        <li><a href="#">Connexion</a></li>
-        <li><a href="#">Créer un compte</a></li>
-        <li><a href="#">Mot de passe oublié</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="#">Mes Graines</a></li>
+          <li><a href="#">Mes messages</a></li>
+          <li><a href="#">Mes infos personnelles</a></li>
+          <li><a href="{% url 'authentication:logout' %}" id="logout_btn">Se déconnecter</a></li>
+        {% else %}
+          <li><a href="{% url 'authentication:login' %}"  id='login_btn'>Connexion</a></li>
+          <li><a href="{% url 'authentication:signup' %}" id='signup_btn'>Créer un compte</a></li>
+          <li><a href="#">Mot de passe oublié</a></li>
+        {% endif %}
       </ul>
     </nav>
 

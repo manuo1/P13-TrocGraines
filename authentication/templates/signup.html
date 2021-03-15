@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Troc Graines - Création de compte{% endblock %}
+{% block main %}
+<form method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+  <button type="submit" class="btn btn-primary" id="signup_form_btn">Créer le compte</button>
+</form>
+{% endblock %}

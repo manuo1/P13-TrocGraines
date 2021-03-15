@@ -6,3 +6,4 @@ __pycache__
 .coveragerc
 staticfiles
 geckodriver.log
+migrations

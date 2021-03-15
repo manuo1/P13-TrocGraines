@@ -9,6 +9,7 @@ coverage==5.5
 distlib==0.3.0
 distro==1.4.0
 Django==3.1.7
+django-crispy-forms==1.11.1
 html5lib==1.0.1
 idna==2.8
 ipaddr==2.2.0

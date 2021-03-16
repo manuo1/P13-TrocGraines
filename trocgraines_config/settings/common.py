@@ -127,9 +127,30 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-# authentication 
+# authentication
+
 AUTH_USER_MODEL = "authentication.User"
 LOGIN_REDIRECT_URL = 'trocgraines:homepage'
 LOGOUT_REDIRECT_URL = 'trocgraines:homepage'
 
+# crispy_forms
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = os.environ['EMAIL_HOST'] #'smtp.free.fr'
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER'] #'youremail@free.fr'
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD'] #'email_password'
+EMAIL_PORT = os.environ['EMAIL_PORT']
+DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL'] #'youremail@free.fr'
+"""
+# email test parameter
+# The file backend writes emails to a file.
+# A new file is created for each new session that is opened on this backend.
+# Email are written in the directory defined by EMAIL_FILE_PATH
+
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+"""

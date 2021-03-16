@@ -32,9 +32,9 @@
           <li><a href="#">Mes infos personnelles</a></li>
           <li><a href="{% url 'authentication:logout' %}" id="logout_btn">Se déconnecter</a></li>
         {% else %}
-          <li><a href="{% url 'authentication:login' %}"  id='login_btn'>Connexion</a></li>
-          <li><a href="{% url 'authentication:signup' %}" id='signup_btn'>Créer un compte</a></li>
-          <li><a href="#">Mot de passe oublié</a></li>
+          <li><a href="{% url 'authentication:login' %}"          id='login_btn'>Connexion</a></li>
+          <li><a href="{% url 'authentication:signup' %}"         id='signup_btn'>Créer un compte</a></li>
+          <li><a href="{% url 'authentication:password_reset' %}" id='reset_psw_btn'>Mot de passe oublié</a></li>
         {% endif %}
       </ul>
     </nav>

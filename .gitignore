@@ -7,3 +7,4 @@ __pycache__
 staticfiles
 geckodriver.log
 migrations
+sent_emails

@@ -26,6 +26,13 @@ jobs:
       DATABASES_NAME: 'test_database'
       DATABASES_USER: 'test_user'
       DATABASES_PASSWORD: 'test_password'
+
+      EMAIL_HOST: 'smtp.mail.fr'
+      EMAIL_HOST_USER: 'mail@mail.fr'
+      EMAIL_HOST_PASSWORD: 'test_password'
+      EMAIL_PORT: 123
+      DEFAULT_FROM_EMAIL: 'mail@mail.fr'
+
     services:
       postgres:
         # Docker Hub image

@@ -31,6 +31,9 @@
           <li><a href="#">Mes messages</a></li>
           <li><a href="#">Mes infos personnelles</a></li>
           <li><a href="{% url 'authentication:logout' %}" id="logout_btn">Se déconnecter</a></li>
+          {% if user.is_superuser %}
+          <li><a href="/admin">Console d'administration</a></li>
+          {% endif %}
         {% else %}
           <li><a href="{% url 'authentication:login' %}"          id='login_btn'>Connexion</a></li>
           <li><a href="{% url 'authentication:signup' %}"         id='signup_btn'>Créer un compte</a></li>

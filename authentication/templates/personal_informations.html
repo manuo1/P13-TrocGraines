@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Troc Graines - Mes informations personnelles{% endblock %}
+
+{% block main %}
+
+
+<div class="text-center mb-100">
+  <form action="{% url 'authentication:personal_informations' %}" method="post">
+    {% csrf_token %}
+    {{ user_update_form|crispy }}
+    <button type="submit" class="btn btn-primary" id="personal_info_update_btn">
+      Modifier mes informations personnelles
+    </button>
+  </form>
+  <a href="{% url 'authentication:password_update' %}" class="btn btn-primary" id="personal_info_update_btn">Modifier mon mot de passe</a>
+</div>
+
+{% endblock %}

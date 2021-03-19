@@ -1,7 +1,8 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
-from .views import UserSignUpView, UserLoginView, UserLogoutView
+from .views import (UserSignUpView, UserLoginView, UserLogoutView,
+    personalInformations)
 
 app_name = 'authentication'
 
@@ -54,5 +55,24 @@ urlpatterns = [
             template_name='password_reset_complete.html'
         ),
         name='password_reset_complete'
+    ),
+    path(
+        'personal_informations',
+        views.personalInformations,
+        name='personal_informations'
+    ),
+    path(
+        'personal_informations_update',
+        views.personalInformationsUpdate,
+        name='personal_informations_update'
+    ),
+    path(
+        'password_update',
+        views.PersonalPasswordChangeView.as_view(
+            template_name='password_update.html',
+            success_url='personal_informations',
+            extra_context={},
+        ),
+        name='password_update',
     ),
 ]

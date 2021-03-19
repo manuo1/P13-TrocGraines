@@ -17,7 +17,7 @@
         <li><a href="#">Logo</a></li>
         <li><a href="#">Troc Graines</a></li>
         <li><a href="#">Ajouter une graine à partager</a></li>
-        <li><a href="#">Mon compte {% if user.is_authenticated %} <br>( {{user.username}} ){% endif %}</a></li>
+        <li><a id='my_account_btn'>Mon compte {% if user.is_authenticated %} <br>( {{user.username}} ){% endif %}</a></li>
       </ul>
       <hr>
     </nav>
@@ -29,7 +29,7 @@
         {% if user.is_authenticated %}
           <li><a href="#">Mes Graines</a></li>
           <li><a href="#">Mes messages</a></li>
-          <li><a href="#" id="my_personal_infos_btn">Mes infos personnelles</a></li>
+          <li><a href="{% url 'authentication:personal_informations' %}" id="my_personal_infos_btn">Mes infos personnelles</a></li>
           <li><a href="{% url 'authentication:logout' %}" id="logout_btn">Se déconnecter</a></li>
           {% if user.is_superuser %}
           <li><a href="/admin">Console d'administration</a></li>
@@ -50,7 +50,7 @@
         {% endfor %}
     </ul>
     {% endif %}
-    
+
     <!-- main -->
     <main>
       {% block main %}

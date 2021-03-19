@@ -29,7 +29,7 @@
         {% if user.is_authenticated %}
           <li><a href="#">Mes Graines</a></li>
           <li><a href="#">Mes messages</a></li>
-          <li><a href="#">Mes infos personnelles</a></li>
+          <li><a href="#" id="my_personal_infos_btn">Mes infos personnelles</a></li>
           <li><a href="{% url 'authentication:logout' %}" id="logout_btn">Se déconnecter</a></li>
           {% if user.is_superuser %}
           <li><a href="/admin">Console d'administration</a></li>
@@ -42,6 +42,15 @@
       </ul>
     </nav>
 
+    <!-- display of any messages -->
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="messages_{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    
     <!-- main -->
     <main>
       {% block main %}

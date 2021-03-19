@@ -38,6 +38,18 @@ class FirefoxFunctionalTestCases(LiveServerTestCase):
         self.click_on_id('logout_btn')
         self.assertTrue(self.element_is_present('login_btn'))
 
+    def test_user_can_create_an_account(self):
+        """ test if user can create an account and login with """
+        self.go_to_url_name('authentication:signup')
+        self.write_in_id('id_username', 'testusername2')
+        self.write_in_id('id_email', 'testusername2@mail.com')
+        self.write_in_id('id_password1', 'Testpassword1234')
+        self.write_in_id('id_password2', 'Testpassword1234')
+        self.click_on_id('signup_form_btn')
+        self.click_on_id('logout_btn')
+        self.login_the_user('testusername2', 'Testpassword1234')
+        self.assertTrue(self.element_is_present('my_personal_infos_btn'))
+
 
     """ some methods to improve the readability of tests """
 

@@ -50,6 +50,34 @@ class FirefoxFunctionalTestCases(LiveServerTestCase):
         self.login_the_user('testusername2', 'Testpassword1234')
         self.assertTrue(self.element_is_present('my_personal_infos_btn'))
 
+    def test_user_can_modify_their_personal_information(self):
+        """test if the user can modify their personal information"""
+        self.login_the_user('testusername', 'testpassword')
+        self.click_on_id('my_personal_infos_btn')
+        self.click_on_id('personal_info_update_btn')
+        self.write_in_id('id_username_update', 'testusername3')
+        self.write_in_id('id_email_update', 'testusername3@mail.com')
+        self.click_on_id('personal_info_update_done_btn')
+        username_form = self.get_html_in('div_id_username_update')
+        mail_form = self.get_html_in('div_id_email_update')
+        self.assertTrue(
+            "testusername3" in username_form
+            and "testusername3@mail.com" in mail_form
+        )
+
+    def test_user_can_change_his_password(self):
+        """test if the user can change his password"""
+        self.login_the_user('testusername', 'testpassword')
+        self.click_on_id('my_personal_infos_btn')
+        self.click_on_id('password_update_btn')
+        self.write_in_id('id_old_password', 'testpassword')
+        self.write_in_id('id_new_password1', 'Testpassword1234')
+        self.write_in_id('id_new_password2', 'Testpassword1234')
+        self.click_on_id('password_update_done_btn')
+        self.go_to_url_name('authentication:logout')
+        self.login_the_user('testusername', 'Testpassword1234')
+        self.assertTrue(self.element_is_present('my_personal_infos_btn'))
+
 
     """ some methods to improve the readability of tests """
 
@@ -82,3 +110,10 @@ class FirefoxFunctionalTestCases(LiveServerTestCase):
             return True
         except NoSuchElementException:
             return False
+
+    def get_html_in(self, element_id):
+        """ find element by id and return the html contained inside """
+        html = self.driver.find_element_by_id(element_id).get_attribute(
+            'innerHTML'
+        )
+        return html

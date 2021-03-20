@@ -65,7 +65,7 @@ jobs:
     # Create django tables
     - name: Run migrations
       run: |
-        python manage.py makemigrations
+        python manage.py makemigrations authentication
         python manage.py migrate
     # Collect djang staticss
     - name: Run collectstatic

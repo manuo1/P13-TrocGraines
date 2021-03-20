@@ -32,7 +32,7 @@
           <li><a href="{% url 'authentication:personal_informations' %}" id="my_personal_infos_btn">Mes infos personnelles</a></li>
           <li><a href="{% url 'authentication:logout' %}" id="logout_btn">Se déconnecter</a></li>
           {% if user.is_superuser %}
-          <li><a href="/admin">Console d'administration</a></li>
+          <li><a href="{% url 'admin:index' %}">Console d'administration</a></li>
           {% endif %}
         {% else %}
           <li><a href="{% url 'authentication:login' %}"          id='login_btn'>Connexion</a></li>

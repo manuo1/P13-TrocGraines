@@ -1,0 +1,11 @@
+
+env
+.env
+__pycache__
+.gitignore
+.coverage
+.coveragerc
+staticfiles
+geckodriver.log
+migrations
+sent_emails

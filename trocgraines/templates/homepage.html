@@ -26,13 +26,13 @@
   <hr>
   {% if matching_list %}
     {% for seed in matching_list %}
+    <a>nom: {{ seed.name }}</a>
     <ul>
-      <li><a>nom: {{ seed.name }}</a></li>
       <li><a>Description: {{ seed.description }}</a></li>
       <li><img src="{{ MEDIA_URL }}{{ seed.photo.url }}" alt="{{ MEDIA_URL }}{{seed.photo.url}}" ></li>
       <li><a>Propriétaire: {{ seed.owner }}</a></li>
-      {% endfor %}
     </ul>
+    {% endfor %}
     <hr>
   {% else %}
     <a>Pas de résultats</a>

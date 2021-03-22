@@ -14,5 +14,5 @@ class CreateSeedView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         """ Add current user for SeedForm """
-        form.instance.user = self.request.user
+        form.instance.owner = self.request.user
         return super().form_valid(form)

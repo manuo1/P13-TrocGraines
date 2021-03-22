@@ -66,6 +66,7 @@ jobs:
     - name: Run migrations
       run: |
         python manage.py makemigrations authentication
+        python manage.py makemigrations seeds
         python manage.py migrate
     # Collect djang staticss
     - name: Run collectstatic

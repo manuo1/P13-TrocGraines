@@ -29,7 +29,7 @@
     <a>nom: {{ seed.name }}</a>
     <ul>
       <li><a>Description: {{ seed.description }}</a></li>
-      <li><img src="{{ MEDIA_URL }}{{ seed.photo.url }}" alt="{{ MEDIA_URL }}{{seed.photo.url}}" ></li>
+      <li><img src="{{ seed.photo.url }}" alt="{{seed.photo.url}}" ></li>
       <li><a>Propriétaire: {{ seed.owner }}</a></li>
     </ul>
     {% endfor %}

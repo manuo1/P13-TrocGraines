@@ -5,6 +5,10 @@ from django.db import IntegrityError, Error, models
 class User(AbstractUser):
     ranking = models.SmallIntegerField(default=100)
 
+    def __str__(self):
+        return self.username
+
+
 class UsersManager(models.Manager):
     """addition of a manager to the User class."""
 

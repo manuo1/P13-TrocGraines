@@ -16,7 +16,7 @@
       <ul>
         <li><a href="#">Logo</a></li>
         <li><a href="#">Troc Graines</a></li>
-        <li><a href="#">Ajouter une graine à partager</a></li>
+        <li><a href="{% url 'seeds:add_seed' %}" id="add_seed_btn">Ajouter une graine à partager</a></li>
         <li><a id='my_account_btn'>Mon compte {% if user.is_authenticated %} <br>( {{user.username}} ){% endif %}</a></li>
       </ul>
       <hr>

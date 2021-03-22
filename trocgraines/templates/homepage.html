@@ -1,17 +1,42 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Troc Graines{% endblock %}
 {% block main %}
 
 <!-- seed search form  -->
 <section id="seed_search_form">
   <hr>
-  <a>Formulaire de recherche de graines</a>
+  <div class="text-center mb-100">
+    <form action="{% url 'trocgraines:homepage' %}" method="post">
+      {% csrf_token %}
+      {{ search_form|crispy }}
+      <button type="submit" class="btn btn-primary" id="login_form_btn">Chercher</button>
+    </form>
+  </div>
   <hr>
 </section>
 
 <!-- seed search results  -->
 <section id="seed_search_results">
+  {% if searched_seed %}
+  <h3>Votre recherche de {{searched_seed}}</h3>
+  {% else %}
+  <h3>Dernières Graines Ajoutées</h3>
+  {% endif %}
   <hr>
-  <a>Liste des resultats de recherche</a>
+  {% if matching_list %}
+    {% for seed in matching_list %}
+    <ul>
+      <li><a>nom: {{ seed.name }}</a></li>
+      <li><a>Description: {{ seed.description }}</a></li>
+      <li><img src="{{ seed.photo.url }}" alt="{{seed.photo.url}}" ></li>
+      <li><a>Propriétaire: {{ seed.owner }}</a></li>
+      {% endfor %}
+    </ul>
+    <hr>
+  {% else %}
+    <a>Pas de résultats</a>
+  {% endif %}
   <hr>
 </section>
 

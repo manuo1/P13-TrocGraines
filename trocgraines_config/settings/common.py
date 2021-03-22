@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'trocgraines',
     'authentication',
+    'seeds',
     'crispy_forms',
 ]
 
@@ -107,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -127,9 +127,15 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
+# Media files
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 # authentication
 
-AUTH_USER_MODEL = "authentication.User"
+AUTH_USER_MODEL = 'authentication.User'
+LOGIN_URL = 'authentication:login'
 LOGIN_REDIRECT_URL = 'trocgraines:homepage'
 LOGOUT_REDIRECT_URL = 'trocgraines:homepage'
 

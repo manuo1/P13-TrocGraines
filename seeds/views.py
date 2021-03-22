@@ -13,6 +13,6 @@ class CreateSeedView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('trocgraines:homepage')
 
     def form_valid(self, form):
-        """ Add current user for SeedForm """
+        """ Add current user for SeedCreateForm """
         form.instance.owner = self.request.user
         return super().form_valid(form)

@@ -22,8 +22,6 @@ class SeedManager(models.Manager):
         )
         return matching_list
 
-
-
 class Seed(models.Model):
 
     name = models.CharField(max_length=100)

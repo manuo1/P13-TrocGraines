@@ -29,11 +29,10 @@ class Seed(models.Model):
 
     name = models.CharField(max_length=100)
     description = models.TextField()
-    photo = models.ImageField(upload_to='images/', max_length=300)
-    photo_thumbnail = ImageSpecField(source='photo',
-                                      processors=[ResizeToFill(150, 150)],
-                                      format='JPEG',
-                                      options={'quality': 60})
+    photo = ProcessedImageField(upload_to='images/',
+                                   processors=[ResizeToFill(800, 600)],
+                                   format='JPEG',
+                                   options={'quality': 60})
     creation_date = models.DateTimeField(auto_now_add=True)
     available = models.BooleanField(default=True)
     owner = models.ForeignKey(user, on_delete=models.CASCADE)

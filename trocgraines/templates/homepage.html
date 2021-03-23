@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block title %}Troc Graines{% endblock %}
 {% block main %}
@@ -18,26 +19,50 @@
 
 <!-- seed search results  -->
 <section id="seed_search_results">
+
   {% if searched_seed %}
   <h3>Votre recherche de {{searched_seed}}</h3>
   {% else %}
   <h3>Dernières Graines Ajoutées</h3>
   {% endif %}
-  <hr>
-  {% if matching_list %}
-    {% for seed in matching_list %}
-    <a>nom: {{ seed.name }}</a>
-    <ul>
-      <li><a>Description: {{ seed.description }}</a></li>
-      <li><img src="{{ seed.photo.url }}" alt="{{seed.photo.name}}" ></li>
-      <li><a>Propriétaire: {{ seed.owner }}</a></li>
-    </ul>
-    {% endfor %}
-    <hr>
-  {% else %}
-    <a>Pas de résultats</a>
-  {% endif %}
-  <hr>
+
+    {% if matching_list %}
+      {% for seed in matching_list %}
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 mt-3">
+        <div class="card border-success mb-3">
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <img class="" src="{{ seed.photo_thumbnail.url }}" alt="{{seed.photo.name}}">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title text-white bg-success pl-2">{{ seed.name }}</h4>
+              <p class="card-text">{{ seed.description }}</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="row justify-content-between">
+              <div class="col-6">
+                <small class="text-muted">{{ seed.creation_date }} par {{ seed.owner }}</small>
+              </div>
+              <div class="col-6 text-right">
+                <a href="#" class="btn btn-success">Echanger</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      {% endfor %}
+    {% else %}
+      <a>Pas de résultats</a>
+    {% endif %}
+
+
 </section>
 
 {% endblock %}

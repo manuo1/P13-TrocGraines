@@ -9,9 +9,6 @@ DEBUG = False
 # Activate Django-Heroku.
 django_heroku.settings(locals())
 
-INSTALLED_APPS += 'cloudinary_storage'
-INSTALLED_APPS += 'cloudinary'
-
 CLOUDINARY_STORAGE = {
 	     'CLOUD_NAME': os.environ['CLOUDINARY_CLOUD_NAME'],
 	     'API_KEY': os.environ['CLOUDINARY_API_KEY'],

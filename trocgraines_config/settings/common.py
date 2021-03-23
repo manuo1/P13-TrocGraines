@@ -34,6 +34,8 @@ INSTALLED_APPS = [
     'authentication',
     'seeds',
     'crispy_forms',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [

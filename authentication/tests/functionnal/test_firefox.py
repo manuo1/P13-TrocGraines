@@ -35,7 +35,9 @@ class FirefoxFunctionalTestCases(LiveServerTestCase):
     def test_user_can_login_and_logout(self):
         """test if user can login and logout."""
         self.login_the_user()
+        self.click_on_id('my_account_btn')
         self.click_on_id('logout_btn')
+        self.click_on_id('my_account_btn')
         self.assertTrue(self.element_is_present('login_btn'))
 
     def test_user_can_create_an_account(self):
@@ -46,13 +48,16 @@ class FirefoxFunctionalTestCases(LiveServerTestCase):
         self.write_in_id('id_password1', 'Testpassword1234')
         self.write_in_id('id_password2', 'Testpassword1234')
         self.click_on_id('signup_form_btn')
+        self.click_on_id('my_account_btn')
         self.click_on_id('logout_btn')
         self.login_the_user('testusername2', 'Testpassword1234')
+        self.click_on_id('my_account_btn')
         self.assertTrue(self.element_is_present('my_personal_infos_btn'))
 
     def test_user_can_modify_their_personal_information(self):
         """test if the user can modify their personal information"""
         self.login_the_user('testusername', 'testpassword')
+        self.click_on_id('my_account_btn')
         self.click_on_id('my_personal_infos_btn')
         self.click_on_id('personal_info_update_btn')
         self.write_in_id('id_username_update', 'testusername3')
@@ -68,6 +73,7 @@ class FirefoxFunctionalTestCases(LiveServerTestCase):
     def test_user_can_change_his_password(self):
         """test if the user can change his password"""
         self.login_the_user('testusername', 'testpassword')
+        self.click_on_id('my_account_btn')
         self.click_on_id('my_personal_infos_btn')
         self.click_on_id('password_update_btn')
         self.write_in_id('id_old_password', 'testpassword')
@@ -76,7 +82,10 @@ class FirefoxFunctionalTestCases(LiveServerTestCase):
         self.click_on_id('password_update_done_btn')
         self.go_to_url_name('authentication:logout')
         self.login_the_user('testusername', 'Testpassword1234')
-        self.assertTrue(self.element_is_present('my_personal_infos_btn'))
+        welcom_message = self.get_html_in('info_messages')
+        self.assertTrue(
+            "Content de vous revoir testusername" in welcom_message
+        )
 
 
     """ some methods to improve the readability of tests """
@@ -97,8 +106,7 @@ class FirefoxFunctionalTestCases(LiveServerTestCase):
 
     def login_the_user(self, username='testusername', password='testpassword'):
         """ run the login procedure  """
-        self.go_to_url_name('trocgraines:homepage')
-        self.click_on_id('login_btn')
+        self.go_to_url_name('authentication:login')
         self.write_in_id('id_username', username)
         self.write_in_id('id_password', password)
         self.click_on_id('login_form_btn')

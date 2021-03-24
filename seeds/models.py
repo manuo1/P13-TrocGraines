@@ -11,6 +11,7 @@ user = get_user_model()
 class SeedManager(models.Manager):
 
     def get_last_seeds_added(self):
+        """ return last added seeds """
         matching_list = []
         matching_list = Seed.objects.order_by('-creation_date').all()
         return matching_list
@@ -24,6 +25,17 @@ class SeedManager(models.Manager):
             .order_by('name')
         )
         return matching_list
+
+    def get_user_seeds(self, owner):
+        """returns a list of user seeds."""
+        matching_list = []
+        matching_list = (
+            Seed.objects.annotate(search=SearchVector('owner'))
+            .filter(search=SearchQuery(searched_seed))
+            .order_by('name')
+        )
+        return matching_list
+
 
 class Seed(models.Model):
 

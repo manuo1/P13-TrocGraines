@@ -2,8 +2,9 @@
 {% load crispy_forms_tags %}
 {% block title %}Troc Graines - Création de compte{% endblock %}
 {% block main %}
-<h1>Création de compte</h1>
+
 <div class="text-center mb-100">
+  <h2>Création de compte</h2>
   <form method="post">
     {% csrf_token %}
     {{ form|crispy }}

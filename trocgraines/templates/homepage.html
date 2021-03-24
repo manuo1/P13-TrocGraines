@@ -6,7 +6,6 @@
 
 <!-- seed search form  -->
 <section id="seed_search_form">
-  <hr>
   <div class="text-center mb-100">
     <form action="{% url 'trocgraines:homepage' %}" method="post">
       {% csrf_token %}
@@ -23,44 +22,42 @@
   {% if searched_seed %}
   <h3>Votre recherche de {{searched_seed}}</h3>
   {% else %}
-  <h3>Dernières Graines Ajoutées</h3>
+  <h3>Nouveautés</h3>
   {% endif %}
 
-    {% if matching_list %}
-      {% for seed in matching_list %}
-
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 mt-3">
-        <div class="card border-success mb-3">
-          <div class="card-horizontal">
-            <div class="img-square-wrapper">
-              <img class="" style="max-width:15rem;" src="{{ seed.photo.url }}" alt="{{seed.photo.url}}">
-            </div>
-            <div class="card-body">
-              <h4 class="card-title text-white bg-success pl-2">{{ seed.name }}</h4>
-              <p class="card-text">{{ seed.description }}</p>
-            </div>
-          </div>
-          <div class="card-footer">
-            <div class="row justify-content-between">
-              <div class="col-6">
-                <small class="text-muted">{{ seed.creation_date }} par {{ seed.owner }}</small>
+  {% if matching_list %}
+    {% for seed in matching_list %}
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 mt-3">
+          <div class="card bg-light border-success mb-3">
+            <div class="card-horizontal">
+              <div class="img-square-wrapper">
+                <img class="" style="max-width:15rem;" src="{{ seed.photo.url }}" alt="{{seed.photo.url}}">
               </div>
-              <div class="col-6 text-right">
-                <a href="#" class="btn btn-success">Echanger</a>
+              <div class="card-body">
+                <h4 class="card-title text-white bg-success pl-2">{{ seed.name }}</h4>
+                <p class="card-text">{{ seed.description }}</p>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="row justify-content-between">
+                <div class="col-6">
+                  <small class="text-muted">{{ seed.creation_date }} par {{ seed.owner }}</small>
+                </div>
+                <div class="col-6 text-right">
+                  <a href="#" class="btn btn-success">Echanger</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-      {% endfor %}
-    {% else %}
+    {% endfor %}
+  {% else %}
       <a>Pas de résultats</a>
-    {% endif %}
+  {% endif %}
 
 
 </section>

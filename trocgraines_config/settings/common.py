@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -154,12 +155,12 @@ EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER'] #'youremail@free.fr'
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD'] #'email_password'
 EMAIL_PORT = os.environ['EMAIL_PORT']
 DEFAULT_FROM_EMAIL = os.environ['DEFAULT_FROM_EMAIL'] #'youremail@free.fr'
-"""
-# email test parameter
-# The file backend writes emails to a file.
-# A new file is created for each new session that is opened on this backend.
-# Email are written in the directory defined by EMAIL_FILE_PATH
 
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
-"""
+# change django message tags to match bootstrap tags
+MESSAGE_TAGS = {
+    messages.DEBUG: 'info',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'danger',
+}

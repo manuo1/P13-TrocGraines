@@ -11,4 +11,9 @@ urlpatterns = [
         CreateSeedView.as_view(),
         name='add_seed'
     ),
+    path(
+        'my_seeds/',
+        views.my_seeds,
+        name='my_seeds'
+    ),
 ]

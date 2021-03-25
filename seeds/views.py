@@ -15,7 +15,7 @@ class CreateSeedView(LoginRequiredMixin, CreateView):
     model = Seed
     form_class = SeedCreateForm
     template_name = 'add_seed.html'
-    success_url = reverse_lazy('seeds:my_seed')
+    success_url = reverse_lazy('seeds:my_seeds')
 
     def form_valid(self, form):
         """ Add current user for SeedCreateForm """

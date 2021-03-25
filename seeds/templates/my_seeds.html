@@ -5,7 +5,7 @@
 <h3>Mes graines</h3>
 {% if matching_list %}
   {% for seed in matching_list %}
-  <div class="container-fluid">
+  <div class="container-fluid" id="seed_{{seed.id}}_card">
     <div class="row">
       <div class="col-12 mt-3">
         <div class="card bg-light border-success mb-3">
@@ -28,13 +28,38 @@
                 <form action="{% url 'seeds:my_seeds' %}" method="post">
                   {% csrf_token %}
                   {% if seed.available %}
-                  <a class='text-primary'>Cette graine est échangeable </a>
+                  <a class='text-primary'>Cette graine est échangeable</a>
                   <button type="submit" value="{{seed.id}}" name="seed_availability" class="btn btn-warning btn-sm ml-2">Rendre indisponible</button>
                   {% else %}
-                  <a class='text-danger'>Cette graine n'est pas échangeable </a>
+                  <a class='text-danger'>Cette graine n'est pas échangeable</a>
                   <button type="submit" value="{{seed.id}}" name="seed_availability" class="btn btn-success btn-sm ml-2">Rendre disponible</button>
                   {% endif %}
-                  <button type="submit" value="{{seed.id}}" name="delette_" class="btn btn-danger btn-sm">Supprimer</button>
+
+                  <!-- Delete button with modal trigger -->
+                  <button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#deleteModal{{seed.id}}Center">
+                    Supprimer
+                  </button>
+
+                  <!-- Modal part -->
+                  <div class="modal fade" id="deleteModal{{seed.id}}Center" tabindex="-1" role="dialog" aria-labelledby="deleteModal{{seed.id}}CenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="deleteModal{{seed.id}}LongTitle">Voulez-vous vraiment supprimer cette graine ?</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body text-center">
+                          Attention : Cette action est irréversible !
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-success" data-dismiss="modal">Conserver la graine</button>
+                          <button type="submit" value="{{seed.id}}" name="delete_seed" class="btn btn-danger" ">Suprimer la Graine</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>

@@ -30,7 +30,7 @@ class SeedManager(models.Manager):
     def get_user_seeds(self, user):
         """returns a list of user seeds."""
         matching_list = []
-        matching_list = Seed.objects.filter(owner=user).order_by('name')
+        matching_list = Seed.objects.filter(owner=user).order_by('-creation_date')
         return matching_list
 
     def changes_seed_availability(self, seed_id):
@@ -42,6 +42,17 @@ class SeedManager(models.Manager):
         except Error:
             seed.available = seed_old_state
             messages.append({40: 'Une erreur est survenue'})
+
+    def delete_seed(self, seed_id):
+        message =''
+        seed = get_object_or_404(Seed, pk=seed_id)
+        try:
+            seed_name = seed.name
+            seed.delete()
+            messages = [{40: 'Vous venez de supprimer : {}'.format(seed_name)}]
+        except Error:
+            messages = [{40: 'Une erreur est survenue'}]
+        return messages
 
 class Seed(models.Model):
 

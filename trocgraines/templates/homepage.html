@@ -4,18 +4,29 @@
 {% block title %}Troc Graines{% endblock %}
 {% block main %}
 
-<!-- seed search form  -->
-<section id="seed_search_form">
-  <div class="text-center mb-100">
-    <form action="{% url 'trocgraines:homepage' %}" method="post">
-      {% csrf_token %}
-      {{ search_form|crispy }}
-      <button type="submit" class="btn btn-primary" id="login_form_btn">Chercher</button>
-    </form>
+<!-- presentation area  -->
+<section class="mt-2" id="presentation">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h3>Partager, échanger</h3>
+      <h4>Troc Graine vous permet trouver ou de mettre à disposition des graines pour les échanger</h4>
+    </div>
   </div>
-  <hr>
 </section>
+<!-- seed search form  -->
+<section class="mt-2" id="seed_search_form">
+  <div class="row d-block justify-content-center">
 
+      <form action="{% url 'trocgraines:homepage' %}" method="post" class="form-inline my-2 my-lg-0 mx-2">
+        <div class="col-2"></div>
+        {% csrf_token %}
+        {{ search_form.search }}
+        <button type="submit" class="btn btn-outline-success my-2 my-sm-0 col-lg-1" id="search_form_btn">Chercher</button>
+        <div class="col-2"></div>
+      </form>
+  </div>
+</section>
+<hr>
 <!-- seed search results  -->
 <section id="seed_search_results">
 
@@ -27,7 +38,7 @@
 
   {% if matching_list %}
     {% for seed in matching_list %}
-    <div class="container-fluid">
+    <div class="container-fluid" id="homepage_seed_{{seed.id}}_card>
       <div class="row">
         <div class="col-12 mt-3">
           <div class="card bg-light border-success mb-3">
@@ -57,10 +68,9 @@
           </div>
         </div>
       </div>
-    </div>
     {% endfor %}
   {% else %}
-      <a>Pas de résultats</a>
+      <a>Nous sommes désolés,il n'y a pas encore de {{searched_seed}} sur Troc Graines</a>
   {% endif %}
 
 

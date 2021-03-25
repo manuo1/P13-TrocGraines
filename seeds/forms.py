@@ -23,7 +23,13 @@ class SeedCreateForm(forms.ModelForm):
 
 class SeedSearchForm(forms.Form):
     search = forms.CharField(
-        max_length=100,
-        label='Recherche',
-        widget=forms.TextInput(attrs={'placeholder': 'Chercher une graine'})
+        max_length=100
     )
+
+    def __init__(self, *args, **kwargs):
+        super(SeedSearchForm, self).__init__(*args, **kwargs)
+        self.fields['search'].widget.attrs.update({
+            'class': 'form-control mr-sm-2 col-lg-7',
+            'placeholder': 'Chercher une graine',
+            'aria-label': 'Search'
+        })

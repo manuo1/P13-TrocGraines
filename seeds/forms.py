@@ -22,7 +22,6 @@ class SeedCreateForm(forms.ModelForm):
 
 
 
-
 class SeedSearchForm(forms.Form):
     search = forms.CharField(
         max_length=100

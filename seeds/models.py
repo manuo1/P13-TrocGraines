@@ -59,7 +59,7 @@ class Seed(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
     photo = ProcessedImageField(upload_to='images/',
-                                   processors=[ResizeToFill(800, 600)],
+                                   processors=[ResizeToFill(640, 360)],
                                    format='JPEG',
                                    options={'quality': 60})
     creation_date = models.DateTimeField(auto_now_add=True)

@@ -18,7 +18,7 @@
           <div class="card bg-light border-success mb-3">
             <div class="card-horizontal">
               <div class="img-square-wrapper">
-                <img class="" style="max-width:8rem;" src="{{ seed.photo.url }}" alt="{{seed.photo.url}}">
+                <img class="" style="max-width:8rem;" src="{{ seed.photo.url }}" alt="{{seed.name}}">
               </div>
               <div class="card-body">
                 <h4 class="card-title text-white bg-success px-2">{{ seed.name }}</h4>
@@ -36,19 +36,19 @@
                     {% csrf_token %}
                     {% if seed.available %}
                     <a class='text-primary'>Cette graine est échangeable</a>
-                    <button type="submit" value="{{seed.id}}" name="seed_availability" class="btn btn-warning btn-sm ml-2">Rendre indisponible</button>
+                    <button type="submit" value="{{seed.id}}" name="seed_availability" class="btn btn-warning btn-sm ml-2" id="change_seed_{{seed.id}}_availability_btn">Rendre indisponible</button>
                     {% else %}
                     <a class='text-danger'>Cette graine n'est pas échangeable</a>
-                    <button type="submit" value="{{seed.id}}" name="seed_availability" class="btn btn-success btn-sm ml-2">Rendre disponible</button>
+                    <button type="submit" value="{{seed.id}}" name="seed_availability" class="btn btn-success btn-sm ml-2" id="change_seed_{{seed.id}}_availability_btn">Rendre disponible</button>
                     {% endif %}
 
                     <!-- Delete button with modal trigger (button wil use a confirmation message)-->
-                    <button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#deleteModal{{seed.id}}Center">
+                    <button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#deleteModal{{seed.id}}" id="seed_{{seed.id}}_delete_btn">
                       Supprimer
                     </button>
 
                     <!-- Modal part (alert message)-->
-                    <div class="modal fade" id="deleteModal{{seed.id}}Center" tabindex="-1" role="dialog" aria-labelledby="deleteModal{{seed.id}}CenterTitle" aria-hidden="true">
+                    <div class="modal fade" id="deleteModal{{seed.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModal{{seed.id}}Title" aria-hidden="true">
                       <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                           <div class="modal-header">
@@ -62,7 +62,7 @@
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-success" data-dismiss="modal">Conserver la graine</button>
-                            <button type="submit" value="{{seed.id}}" name="delete_seed" class="btn btn-danger" ">Suprimer la Graine</button>
+                            <button type="submit" value="{{seed.id}}" name="delete_seed" class="btn btn-danger" id="seed_{{seed.id}}_delete_btn_confirm">Suprimer la Graine</button>
                           </div>
                         </div>
                       </div>

@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.postgres.search import SearchQuery, SearchVector
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.db import models
+from django.db import models, Error
 
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
@@ -48,8 +48,6 @@ class SeedManager(models.Manager):
         seed = get_object_or_404(Seed, pk=seed_id)
         try:
             seed_name = seed.name
-            if ENVIRONMENT == 'production':
-                cloudinary.uploader.destroy(seed.photo, invalidate = True)
             seed.delete()
             messages = [{40: 'Vous venez de supprimer : {}'.format(seed_name)}]
         except Error:

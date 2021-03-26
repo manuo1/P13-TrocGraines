@@ -18,9 +18,6 @@ class SeedCreateForm(forms.ModelForm):
             'description': forms.Textarea(
                 attrs={'placeholder': 'Ex : Très jolie tomate de ma production'}
             ),
-            'photo':forms.FileInput(
-                attrs={'placeholder': 'test'}
-            ),
         }
 
 

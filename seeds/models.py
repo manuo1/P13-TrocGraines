@@ -48,6 +48,8 @@ class SeedManager(models.Manager):
         seed = get_object_or_404(Seed, pk=seed_id)
         try:
             seed_name = seed.name
+            if ENVIRONMENT == 'production':
+                cloudinary.uploader.destroy(seed.photo, invalidate = True)
             seed.delete()
             messages = [{40: 'Vous venez de supprimer : {}'.format(seed_name)}]
         except Error:

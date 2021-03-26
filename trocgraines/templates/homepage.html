@@ -4,19 +4,22 @@
 {% block title %}Troc Graines{% endblock %}
 {% block main %}
 
-<!-- presentation area  -->
-<section class="mt-2" id="presentation">
-  <div class="row">
-    <div class="col-12 text-center">
-      <h3>Partager, échanger</h3>
-      <h4>Troc Graine vous permet trouver ou de mettre à disposition des graines pour les échanger</h4>
+<div class="container-fluid" id="homepage_container">
+
+  <!-- presentation zone  -->
+  <div class="container-fluid mt-2" id="homepage_presentation_zone">
+    <div class="row">
+      <div class="col-12 text-center">
+          <h3>Partager, échanger, donner</h3>
+          <h4>Troc Graine vous permet trouver ou de mettre à disposition des graines pour les échanger</h4>
+      </div>
     </div>
   </div>
-</section>
-<!-- seed search form  -->
-<section class="mt-2" id="seed_search_form">
-  <div class="row d-block justify-content-center">
 
+  <!-- seed search form  -->
+
+  <div class="container-fluid mt-2" id="seed_search_form">
+    <div class="row d-block justify-content-center">
       <form action="{% url 'trocgraines:homepage' %}" method="post" class="form-inline my-2 my-lg-0 mx-2">
         <div class="col-2"></div>
         {% csrf_token %}
@@ -24,56 +27,61 @@
         <button type="submit" class="btn btn-outline-success my-2 my-sm-0 col-lg-1" id="search_form_btn">Chercher</button>
         <div class="col-2"></div>
       </form>
+    </div>
   </div>
-</section>
-<hr>
-<!-- seed search results  -->
-<section id="seed_search_results">
 
-  {% if searched_seed %}
-  <h3>Votre recherche de {{searched_seed}}</h3>
-  {% else %}
-  <h3>Nouveautés</h3>
-  {% endif %}
+  <hr>
 
-  {% if matching_list %}
-    {% for seed in matching_list %}
-    <div class="container-fluid" id="homepage_seed_{{seed.id}}_card>
+  <!-- seed search results  -->
+
+  <div class="container-fluid mt-2" id="seed_search_results">
+    {% if searched_seed %}
+    <h3>Votre recherche de {{searched_seed}}</h3>
+    {% else %}
+    <h3>Nouveautés</h3>
+    {% endif %}
+
+    {% if matching_list %}
+      {% for seed in matching_list %}
+
+      <!-- seed cards  -->
+
+    <div class="container-fluid" id="homepage_seed_card_{{seed.id}}">
       <div class="row">
-        <div class="col-12 mt-3">
-          <div class="card bg-light border-success mb-3">
-            <div class="card-horizontal">
-              <div class="img-square-wrapper">
-                <img class="" style="max-width:8rem;" src="{{ seed.photo.url }}" alt="{{seed.photo.url}}">
-              </div>
-              <div class="card-body">
-                <h4 class="card-title text-white bg-success px-2">{{ seed.name }}</h4>
-                <p class="card-text">{{ seed.description }}</p>
-              </div>
+      <div class="col-12 mt-3">
+        <div class="card bg-light border-success mb-3">
+          <div class="card-horizontal">
+            <div class="img-square-wrapper">
+              <img class="" style="max-width:8rem;" src="{{ seed.photo.url }}" alt="{{seed.photo.url}}">
             </div>
-            <div class="card-footer">
-              <div class="row justify-content-between">
-                <div class="col-6">
-                  <small class="text-muted">ajouter le {{ seed.creation_date|date:"SHORT_DATE_FORMAT" }} par {{ seed.owner }}</small>
-                </div>
-                <div class="col-6 text-right">
-                  {% if seed.available %}
-                  <a href="#" class="btn btn-success btn-sm">Echanger</a>
-                  {% else %}
-                  <a class="btn btn-secondary btn-sm" disabled>Non disponible pour l'instant</a>
-                  {% endif %}
-                </div>
+            <div class="card-body">
+              <h4 class="card-title text-white bg-success px-2">{{ seed.name }}</h4>
+              <p class="card-text">{{ seed.description }}</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="row justify-content-between">
+              <div class="col-6">
+                <small class="text-muted">ajouter le {{ seed.creation_date|date:"SHORT_DATE_FORMAT" }} par {{ seed.owner }}</small>
+              </div>
+              <div class="col-6 text-right">
+                {% if seed.available %}
+                <a href="#" class="btn btn-success btn-sm">Echanger</a>
+                {% else %}
+                <a class="btn btn-secondary btn-sm" disabled>Non disponible pour l'instant</a>
+                {% endif %}
               </div>
             </div>
           </div>
         </div>
+        </div>
       </div>
-    {% endfor %}
-  {% else %}
-      <a>Nous sommes désolés,il n'y a pas encore de {{searched_seed}} sur Troc Graines</a>
-  {% endif %}
+    </div>
+      {% endfor %}
+    {% else %}
+        <a>Nous sommes désolés,il n'y a pas encore de {{searched_seed}} sur Troc Graines</a>
+    {% endif %}
 
-
-</section>
-
+  </div>
+</div>
 {% endblock %}

@@ -6,8 +6,6 @@ from django.shortcuts import get_object_or_404
 from django.test import Client, TestCase
 from django.urls import reverse
 
-from imagekit.models import ProcessedImageField
-
 from seeds.models import Seed
 
 class TestSeedViews(TestCase):

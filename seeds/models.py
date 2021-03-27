@@ -14,7 +14,9 @@ class SeedManager(models.Manager):
     def get_last_seeds_added(self):
         """ return last added seeds """
         matching_list = []
-        matching_list = Seed.objects.order_by('-available', '-creation_date').all()
+        matching_list = Seed.objects.all().order_by(
+                                            '-available',
+                                            '-creation_date')
         return matching_list
 
     def find_matching_seeds_to(self, searched_seed):
@@ -34,6 +36,7 @@ class SeedManager(models.Manager):
         return matching_list
 
     def changes_seed_availability(self, seed_id):
+        messages = []
         seed = get_object_or_404(Seed, pk=seed_id)
         seed_old_state = seed.available
         seed.available = not seed_old_state
@@ -42,9 +45,10 @@ class SeedManager(models.Manager):
         except Error:
             seed.available = seed_old_state
             messages.append({40: 'Une erreur est survenue'})
+        return messages
 
     def delete_seed(self, seed_id):
-        message =''
+        messages =''
         seed = get_object_or_404(Seed, pk=seed_id)
         try:
             seed_name = seed.name

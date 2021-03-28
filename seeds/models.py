@@ -32,7 +32,8 @@ class SeedManager(models.Manager):
     def get_user_seeds(self, user):
         """returns a list of user seeds."""
         matching_list = []
-        matching_list = Seed.objects.filter(owner=user).order_by('-creation_date')
+        matching_list = Seed.objects.filter(owner=user).order_by(
+            '-creation_date')
         return matching_list
 
     def changes_seed_availability(self, seed_id):

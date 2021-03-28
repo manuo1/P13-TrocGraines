@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
     'imagekit',
+    'exchange_messages',
 ]
 
 MIDDLEWARE = [

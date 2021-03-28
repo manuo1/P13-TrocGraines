@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('trocgraines.urls')),
     path('auth/', include('authentication.urls')),
     path('seeds/', include('seeds.urls')),
+    path('exchange_messages/', include('exchange_messages.urls')),
 ]
 # necessary to display images in development time
 

@@ -4,8 +4,8 @@
 
 {% block main %}
 
-<h1>Mes informations personnelles</h1>
-<div class="text-center mb-100">
+<div class="container-fluid w-75 my-3" id="personal_informations_container">
+  <h2>Mes informations personnelles</h2><hr>
   <form action="{% url 'authentication:personal_informations' %}" method="post">
     {% csrf_token %}
     {{ user_update_form|crispy }}
@@ -15,5 +15,4 @@
   </form>
   <a href="{% url 'authentication:password_update' %}" class="btn btn-primary" id="password_update_btn">Modifier mon mot de passe</a>
 </div>
-
 {% endblock %}

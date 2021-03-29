@@ -3,8 +3,8 @@
 {% block title %}Troc Graines - Connexion{% endblock %}
 {% block main %}
 
-<div class="text-center mb-100">
-  <h2>Connectez-vous, vous aurrez accès à toutes les fonctionnalités</h2>
+<div class="container-fluid w-75 my-3" id="add_seed_container">
+  <h2>Connectez-vous, vous aurrez accès à toutes les fonctionnalités</h2><hr>
   <form action="{% url 'authentication:login' %}?next={{ request.GET.next }}" method="post">
     {% csrf_token %}
     {{ form|crispy }}

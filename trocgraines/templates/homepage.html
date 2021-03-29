@@ -7,11 +7,11 @@
 <div class="container-fluid" id="homepage_container">
 
   <!-- presentation zone  -->
-  <div class="container-fluid mt-2" id="homepage_presentation_zone">
+  <div class="container-fluid mt-5" id="homepage_presentation_zone">
     <div class="row">
       <div class="col-12 text-center">
           <h3>Partager, échanger, donner</h3>
-          <h4>Troc Graine vous permet trouver ou de mettre à disposition des graines pour les échanger</h4>
+          <h4>Ajoutez vos graines sur Troc Graines pour les échanger</h4>
       </div>
     </div>
   </div>
@@ -66,7 +66,7 @@
               </div>
               <div class="col-6 text-right">
                 {% if seed.available %}
-                <a href="#" class="btn btn-success btn-sm">Echanger</a>
+                <a href="{% url 'exchange_messages:new_message' seed_id=seed.id  owner_id=seed.owner.id%}" class="btn btn-success btn-sm">Echanger</a>
                 {% else %}
                 <a class="btn btn-secondary btn-sm" disabled>Non disponible pour l'instant</a>
                 {% endif %}

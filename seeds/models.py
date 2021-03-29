@@ -59,6 +59,11 @@ class SeedManager(models.Manager):
             messages = [{40: 'Une erreur est survenue'}]
         return messages
 
+    def get_seed(slef, seed_id):
+        seed = get_object_or_404(Seed, pk=seed_id)
+        return seed
+
+
 class Seed(models.Model):
 
     name = models.CharField(max_length=100)

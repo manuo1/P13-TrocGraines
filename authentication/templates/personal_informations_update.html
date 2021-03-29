@@ -3,9 +3,8 @@
 {% block title %}Troc Graines - Modifier mes informations personnelles{% endblock %}
 
 {% block main %}
-
-<h1>Modifier mes informations personnelles</h1>
-<div class="text-center mb-100">
+<div class="container-fluid w-75 my-3" id="personal_informations_update_container">
+  <h2>Modifier mes informations personnelles</h2><hr>
   <form action="{% url 'authentication:personal_informations_update' %}" method="post">
     {% csrf_token %}
     {{ user_update_form|crispy }}
@@ -14,5 +13,4 @@
     </button>
   </form>
 </div>
-
 {% endblock %}

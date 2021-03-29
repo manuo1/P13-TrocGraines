@@ -13,7 +13,7 @@ class SeedCreateForm(forms.ModelForm):
         }
         widgets = {
             'name': forms.TextInput(
-                attrs={'placeholder': 'Ex : Graine de tomate'}
+                attrs={'placeholder': 'Ex : Pomme de terre Bintje'}
             ),
             'description': forms.Textarea(
                 attrs={'placeholder': 'Ex : Très jolie tomate de ma production'}

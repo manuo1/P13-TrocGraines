@@ -1,3 +1,4 @@
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import AbstractUser
 from django.db import IntegrityError, Error, models
 
@@ -41,3 +42,7 @@ class UsersManager(models.Manager):
                 messages.append({40: 'Une erreur est survenue'})
 
         return messages
+
+    def get_user(slef, user_id):
+        user = get_object_or_404(User, pk=user_id)
+        return user

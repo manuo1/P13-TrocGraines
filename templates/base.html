@@ -26,10 +26,10 @@
 
   <!-- Body -->
 
-  <body class="mx-2 mx-lg-5 h-100">
+  <body class="container min-vh-100 d-flex flex-column" style="height:100%">
 
     <!-- Body / navigation bar -->
-
+    <header>
     <nav class="navbar navbar-expand-lg navbar-light bg-success sticky-top" id="navbar">
       <img class="d-none d-lg-inline-block" src="{% static 'assets/img/logo_icon_only.png' %}" width="50" height="50" alt="">
       <a class="navbar-brand ml-3" href="{% url 'trocgraines:homepage' %}">Troc Graines</a>
@@ -65,7 +65,7 @@
             <div class="dropdown-menu dropdown-menu-right">
               {% if user.is_authenticated %}
               <a class="dropdown-item" href="{% url 'seeds:my_seeds' %}" id="my_seeds_btn">Mes Graines</a>
-              <a class="dropdown-item" href="#">Mes messages</a>
+              <a class="dropdown-item" href="{% url 'exchange_messages:my_messages' %}">Mes messages</a>
               <a class="dropdown-item" href="{% url 'authentication:personal_informations' %}" id="my_personal_infos_btn">Mes infos personnelles</a>
               <a class="dropdown-item" href="{% url 'authentication:logout' %}" id="logout_btn">Se déconnecter</a>
               {% else %}
@@ -78,17 +78,18 @@
           </ul>
       </div>
     </nav>
+    </header>
 
     <!-- Body / main -->
 
-    <main>
+    <main class="container">
 
       <!-- Body / main / information message display zone -->
 
       <div id="info_messages" role="alert">
         {% if messages %}
           {% for message in messages %}
-          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show mt-1" role="alert">
             <strong>{{ message }}</strong>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
@@ -99,7 +100,6 @@
       </div>
 
       <!-- Body / main / custom zone -->
-
         {% block main %}
         {% endblock %}
 
@@ -107,14 +107,12 @@
 
      <!-- Body / footer -->
 
-     <footer>
-       <div class="row bg-success container-fluid py-2 mt-3 text-center ">
-         <div class="col-lg-6">
-           <a class="text-dark" href="{% url 'trocgraines:homepage' %}">Mention légales<span class="sr-only">(current)</span></a>
-         </div>
-         <div class="col-lg-6">
-           <a class="text-dark" href="{% url 'trocgraines:homepage' %}">Contact<span class="sr-only">(current)</span></a>
-         </div>
+     <footer class="footer bg-success mt-auto py-3">
+       <div class="container">
+         <span class='d-flex justify-content-around'>
+           <a class="text-dark" href="{% url 'trocgraines:homepage' %}">Mention légales</a>
+           <a class="text-dark" href="{% url 'trocgraines:homepage' %}">Contact</a>
+        </span>
        </div>
      </footer>
 

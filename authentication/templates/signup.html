@@ -3,8 +3,8 @@
 {% block title %}Troc Graines - Création de compte{% endblock %}
 {% block main %}
 
-<div class="text-center mb-100">
-  <h2>Création de compte</h2>
+<div class="container-fluid w-75 my-3" id="signup_container">
+  <h2>Création de compte</h2><hr>
   <form method="post">
     {% csrf_token %}
     {{ form|crispy }}

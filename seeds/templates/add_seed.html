@@ -2,12 +2,15 @@
 {% load crispy_forms_tags %}
 {% block title %}Troc Graines - Ajouter une graine{% endblock %}
 {% block main %}
-<h1>Ajouter une graine</h1>
-<div class="text-center mb-100">
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <button type="submit" class="btn btn-primary" id="add_seed_form_btn">Enregistrer</button>
-  </form>
+
+<div class="container-fluid w-75 text-center my-3" id="add_seed_container">
+<h2>Ajouter une graine</h2><hr>
+  <div class="text-center mb-100">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit" class="btn btn-primary" id="add_seed_form_btn">Enregistrer</button>
+    </form>
+  </div>
 </div>
 {% endblock %}

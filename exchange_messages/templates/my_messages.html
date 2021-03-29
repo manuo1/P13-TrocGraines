@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}Troc Graines - Mes messages{% endblock %}
+{% block main %}
+<div class="container-fluid my-3" id="my_messages_container">
+<h2>Mes messages</h2>
+{% if my_discussions %}
+  {% for discussion in my_discussions %}
+
+  <!-- discussion cards  -->
+
+  <div class="container-fluid" id="discussion_card_{{discussion.id}}">
+    <div class="row">
+      <div class="col-12 mt-3">
+        <div class="card border-success mb-3">
+          <div class="card-header bg-success text-white border-success"> Message envoyé à {{discussion.exchange_message.recipient}} le {{ discussion.exchange_message.sending_date |date:"SHORT_DATE_FORMAT" }}</div>
+          <div class="card-body">
+            <p class="card-text" style="white-space: pre-wrap">{{discussion.exchange_message.message}}</p>
+          </div>
+          <div class="card-footer bg-transparent border-success">
+          <!-- Delete button with modal trigger (button wil use a confirmation message)-->
+            <button type="button" class="btn btn-danger btn-sm float-right" data-toggle="modal" data-target="#deleteModal{{discussion.id}}" id="discussion_{{discussion.id}}_delete_btn">
+              Supprimer
+            </button>
+            <form action="{% url 'exchange_messages:my_messages' %}" method="post">
+            {% csrf_token %}
+            <!-- Modal part (alert message)-->
+              <div class="modal fade" id="deleteModal{{discussion.id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModal{{discussion.id}}Title" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="deleteModal{{discussion.id}}LongTitle">Voulez-vous vraiment supprimer cette discution ?</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body text-center">
+                      Attention : Cette action est irréversible !
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-success" data-dismiss="modal">Conserver la discution</button>
+                      <button type="submit" value="{{discussion.id}}" name="delete_discussion" class="btn btn-danger" id="discussion_{{discussion.id}}_delete_btn_confirm">Suprimer la discution</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+{% else %}
+  <a>Vous n'avez pas encore de messages</a>
+{% endif %}
+</div>
+{% endblock %}

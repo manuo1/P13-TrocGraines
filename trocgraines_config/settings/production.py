@@ -17,7 +17,8 @@ CLOUDINARY_STORAGE = {
 
 DEFAULT_FILE_STORAGE='cloudinary_storage.storage.MediaCloudinaryStorage'
 
-
+"""
 COMPRESS_OFFLINE = True
 LIBSASS_OUTPUT_STYLE = 'compressed'
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+"""

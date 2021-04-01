@@ -5,6 +5,7 @@ from django.db import IntegrityError, Error, models
 
 class User(AbstractUser):
     ranking = models.SmallIntegerField(default=100)
+    email = models.EmailField(unique=True)
 
     def __str__(self):
         return self.username

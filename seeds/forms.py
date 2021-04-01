@@ -16,7 +16,10 @@ class SeedCreateForm(forms.ModelForm):
                 attrs={'placeholder': 'Ex : Pomme de terre Bintje'}
             ),
             'description': forms.Textarea(
-                attrs={'placeholder': 'Ex : Très jolie tomate de ma production'}
+                attrs={
+                    'placeholder': 'Ex : Très jolie tomate de ma production',
+                    'maxlength': '300',
+                }
             ),
         }
 

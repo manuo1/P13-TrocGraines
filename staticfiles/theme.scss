@@ -17,6 +17,10 @@ $body-bg:                   #87dc70;
 $body-color:                #1f2b3b;
 // $body-text-align:           null !default;
 
+@import './bootstrap/scss/bootstrap';
+
+//personal part
+
 .asteriskField {
     display: none;
 }
@@ -33,5 +37,3 @@ main, footer {
 .border-3 {
     border-width:3px !important;
 }
-
-@import './bootstrap/scss/bootstrap';

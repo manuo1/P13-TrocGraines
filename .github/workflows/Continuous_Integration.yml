@@ -71,7 +71,7 @@ jobs:
         python manage.py migrate
     # Collect djang staticss
     - name: Run collectstatic
-      run: python manage.py collectstatic
+      run: python manage.py collectstatic --noinput
       # next step to add firefox driver to system
       # download geckodriver extract and copy in geckodriver directory
       # delette tar.gz file

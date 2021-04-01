@@ -12,12 +12,12 @@
   <div class="container-fluid" id="discussion_card_{{discussion.id}}">
     <div class="row">
       <div class="col-12 mt-3">
-        <div class="card border-success mb-3">
-          <div class="card-header bg-success text-white border-success"> Message envoyé à {{discussion.exchange_message.recipient}} le {{ discussion.exchange_message.sending_date |date:"SHORT_DATE_FORMAT" }}</div>
+        <div class="card border-primary mb-3">
+          <div class="card-header bg-primary text-white border-primary"> Message envoyé à {{discussion.exchange_message.recipient}} le {{ discussion.exchange_message.sending_date |date:"SHORT_DATE_FORMAT" }}</div>
           <div class="card-body">
             <p class="card-text" style="white-space: pre-wrap">{{discussion.exchange_message.message}}</p>
           </div>
-          <div class="card-footer bg-transparent border-success">
+          <div class="card-footer bg-transparent border-primary">
           <!-- Delete button with modal trigger (button wil use a confirmation message)-->
             <button type="button" class="btn btn-danger btn-sm float-right" data-toggle="modal" data-target="#deleteModal{{discussion.id}}" id="discussion_{{discussion.id}}_delete_btn">
               Supprimer
@@ -38,7 +38,7 @@
                       Attention : Cette action est irréversible !
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-success" data-dismiss="modal">Conserver la discution</button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal">Conserver la discution</button>
                       <button type="submit" value="{{discussion.id}}" name="delete_discussion" class="btn btn-danger" id="discussion_{{discussion.id}}_delete_btn_confirm">Suprimer la discution</button>
                     </div>
                   </div>

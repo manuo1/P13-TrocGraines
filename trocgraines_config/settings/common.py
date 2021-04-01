@@ -39,7 +39,14 @@ INSTALLED_APPS = [
     'cloudinary',
     'imagekit',
     'exchange_messages',
+    'compressor',
 ]
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -155,7 +162,7 @@ EMAIL_HOST = os.environ['EMAIL_HOST'] #'smtp.free.fr'
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER'] #'youremail@free.fr'
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD'] #'email_password'
 EMAIL_PORT = os.environ['EMAIL_PORT']
-DEFAULT_FROM_EMAIL = 'TrocGraines_NoReply@free.fr' 
+DEFAULT_FROM_EMAIL = 'TrocGraines_NoReply@free.fr'
 
 # change django message tags to match bootstrap tags
 MESSAGE_TAGS = {
@@ -165,3 +172,8 @@ MESSAGE_TAGS = {
     messages.WARNING: 'warning',
     messages.ERROR: 'danger',
 }
+
+# for django-libsass
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)

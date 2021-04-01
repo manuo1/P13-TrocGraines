@@ -47,7 +47,7 @@ class UserLogoutView(LogoutView):
         """ add logout confirm messages """
         messages.success(
             request,
-            'Vous êtes déconnecté, au revoir {}'.format(request.user.username)
+            'Vous êtes déconnecté(e), au revoir {}'.format(request.user.username)
         )
         return super().dispatch(request, *args, **kwargs)
 

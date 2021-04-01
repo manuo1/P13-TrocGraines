@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator
 
 from seeds.forms import SeedSearchForm
 from seeds.models import Seed, SeedManager
@@ -15,9 +16,14 @@ def homepage(request):
         searched_seed=''
         matching_list = seed_manger.get_last_seeds_added()
 
+    paginator = Paginator(matching_list, 8) # Show 8 seeds per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+
     context= {
         'searched_seed': searched_seed,
-        'matching_list': matching_list,
+        'page_obj': paginator.get_page(page_number),
         'search_form': SeedSearchForm()
     }
     return render(request, 'homepage.html', context)

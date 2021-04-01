@@ -3,16 +3,15 @@
 {% block title %}Troc Graines - Mes informations personnelles{% endblock %}
 
 {% block main %}
-
-<div class="container-fluid w-75 my-3" id="personal_informations_container">
+<div class="container-fluid w-75" id="personal_informations_container">
   <h2>Mes informations personnelles</h2><hr>
   <form action="{% url 'authentication:personal_informations' %}" method="post">
     {% csrf_token %}
     {{ user_update_form|crispy }}
-    <button type="submit" class="btn btn-primary" id="personal_info_update_btn">
-      Modifier mes informations personnelles
+    <button type="submit" class="btn btn-secondary btn-block" id="personal_info_update_btn">
+      Modifier mes informations
     </button>
   </form>
-  <a href="{% url 'authentication:password_update' %}" class="btn btn-primary" id="password_update_btn">Modifier mon mot de passe</a>
+  <a href="{% url 'authentication:password_update' %}" class="btn btn-secondary mt-2 d-flex justify-content-center" id="password_update_btn">Changer de mot de passe</a>
 </div>
 {% endblock %}

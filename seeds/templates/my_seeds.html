@@ -3,9 +3,9 @@
 {% block title %}Troc Graines - Mes graine{% endblock %}
 {% block main %}
 
-<div class="container-fluid text-center" id="my_seeds_container">
+<div class="container-fluid" id="my_seeds_container">
 
-  <h2>Mes graines</h2>
+  <h2>Mes graines</h2><hr>
 
   {% if matching_list %}
     {% for seed in matching_list %}
@@ -33,17 +33,17 @@
           <div class="col-lg-4">
             <small class="text-muted">ajouter le {{ seed.creation_date|date:"SHORT_DATE_FORMAT" }}</small>
           </div>
-          <div class="col-lg-8 text-right">
+          <div class="col-lg-8 text-lg-right">
             <!-- seed card/footer/ availability button and deleting button -->
 
-            <form action="{% url 'seeds:my_seeds' %}" method="post">
+            <form action="{% url 'seeds:my_seeds' %}" method="post" class="d-flex justify-content-around">
               {% csrf_token %}
               {% if seed.available %}
-              <a class='text-primary'>Cette graine est échangeable</a>
-              <button type="submit" value="{{seed.id}}" name="seed_availability" class="btn btn-warning border-danger btn-sm ml-2" id="change_seed_{{seed.id}}_availability_btn">Rendre indisponible</button>
+              <a class=''>Cette graine est échangeable</a>
+              <button type="submit" value="{{seed.id}}" name="seed_availability" class="btn btn-info btn-sm" id="change_seed_{{seed.id}}_availability_btn">Rendre non échangeable</button>
               {% else %}
               <a class='text-danger'>Cette graine n'est pas échangeable</a>
-              <button type="submit" value="{{seed.id}}" name="seed_availability" class="btn btn-warning border-success btn-sm ml-2" id="change_seed_{{seed.id}}_availability_btn">Rendre disponible</button>
+              <button type="submit" value="{{seed.id}}" name="seed_availability" class="btn btn-info btn-sm" id="change_seed_{{seed.id}}_availability_btn">Rendre échangeable</button>
               {% endif %}
 
               <!-- Delete button with modal trigger (button wil use a confirmation message)-->

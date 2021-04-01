@@ -38,6 +38,9 @@ class UsersManager(models.Manager):
             try:
                 user.save()
                 messages.append({25: 'Votre email a été modifié'})
+            except IntegrityError:
+                user.email = previous_user_data['email']
+                messages.append({40: 'Cet email est déja utilisé'})
             except Error:
                 user.email = previous_user_data['email']
                 messages.append({40: 'Une erreur est survenue'})

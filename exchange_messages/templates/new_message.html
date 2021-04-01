@@ -2,8 +2,8 @@
 {% load crispy_forms_tags %}
 {% block title %}Troc Graines - Demander un échange{% endblock %}
 {% block main %}
-<div class="container-fluid w-75 my-3" id="new_message_container">
-<h2>Demander un échange</h2>
+<div class="container-fluid w-75" id="new_message_container">
+<h2>Demander un échange</h2><hr>
 <div class="text-center mb-100">
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}

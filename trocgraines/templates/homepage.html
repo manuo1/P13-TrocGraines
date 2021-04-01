@@ -10,8 +10,8 @@
   <div class="container-fluid" id="homepage_presentation_zone">
     <div class="row">
       <div class="col-12 text-center">
-          <h3>Vous souhaitez échanger ou donner</h3>
-          <h4> Ajoutez vos graines sur Troc Graines pour les partager </h4>
+          <h3>Vous récoltez vos propres graines</h3>
+          <h4> Ajoutez les sur Troc Graines pour les partager</h4>
       </div>
     </div>
   </div>
@@ -19,13 +19,11 @@
   <!-- seed search form  -->
 
   <div class="container-fluid mt-2" id="seed_search_form">
-    <div class="row d-block justify-content-center">
-      <form action="{% url 'trocgraines:homepage' %}" method="post" class="form-inline my-2 my-lg-0 mx-2">
-        <div class="col-2"></div>
+    <div class="col-lg-8 col-sm-12 mx-auto">
+      <form action="{% url 'trocgraines:homepage' %}" method="post" class="form-group form-inline my-sm-2 my-lg-0 d-flex justify-content-around">
         {% csrf_token %}
-        {{ search_form.search }}
-        <button type="submit" class="btn btn-primary my-2 my-sm-0 col-lg-1" id="search_form_btn">Chercher</button>
-        <div class="col-2"></div>
+          {{ search_form.search }}
+          <button type="submit" class="btn btn-primary my-2 my-sm-0 col-lg-2 col-sm-12 " id="search_form_btn">Chercher</button>
       </form>
     </div>
   </div>
@@ -41,8 +39,8 @@
     <h3>Nouveautés</h3>
     {% endif %}
 
-    {% if matching_list %}
-      {% for seed in matching_list %}
+    {% if page_obj %}
+      {% for seed in page_obj %}
 
       <!-- seed cards  -->
 
@@ -83,6 +81,36 @@
     {% else %}
         <a>Nous sommes désolés,il n'y a pas encore de {{searched_seed}} sur Troc Graines</a>
     {% endif %}
+
+<!-- pagination  -->
+    {% if page_obj.has_next %}
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        <!-- previous  -->
+        {% if page_obj.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Précédent</a></li>
+        {% else %}
+          <li class="page-item disabled"><a class="page-link">Précédent</a></li>
+        {% endif %}
+        <!-- count  -->
+        <li class="page-item"><a class="page-link" >{{ page_obj.number }} sur {{ page_obj.paginator.num_pages }}</a></li>
+        <!-- next  -->
+        {% if page_obj.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Suivant</a></li>
+        {% else %}
+          <li class="page-item disabled"><a class="page-link" >Suivant</a></li>
+        {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+
+
+
+
+
+
+
 
   </div>
 </div>

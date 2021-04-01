@@ -1,10 +1,10 @@
 
 $primary:   #77b81e;
-$secondary: #F2CC05;
-$success:   #006ba1;
-$danger:    #00e5e8ff;
-$warning:   #76d499;
-$info:      #1705F2;
+$secondary: #aa66cc;
+$success:   #00C851;
+$danger:    #ff4444;
+$warning:   #ffbb33;
+$info:      #0099CC;
 
 // scss-docs-start font-variables
 // stylelint-disable value-keyword-case
@@ -30,6 +30,8 @@ main, footer {
   position: relative;
   top: 100px;
 }
-
+.border-3 {
+    border-width:3px !important;
+}
 
 @import './bootstrap/scss/bootstrap';

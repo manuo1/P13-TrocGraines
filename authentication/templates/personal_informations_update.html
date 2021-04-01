@@ -8,7 +8,7 @@
   <form action="{% url 'authentication:personal_informations_update' %}" method="post">
     {% csrf_token %}
     {{ user_update_form|crispy }}
-    <button type="submit" class="btn btn-primary" id="personal_info_update_done_btn">
+    <button type="submit" class="btn btn-secondary btn-block" id="personal_info_update_done_btn">
       Enregistrer les modifications
     </button>
   </form>

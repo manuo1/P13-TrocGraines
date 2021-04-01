@@ -13,11 +13,11 @@ class SeedCreateForm(forms.ModelForm):
         }
         widgets = {
             'name': forms.TextInput(
-                attrs={'placeholder': 'Ex : Pomme de terre Bintje'}
+                attrs={'placeholder': 'Ex : Pomme de terre Bintje (100 caractères maximum)'}
             ),
             'description': forms.Textarea(
                 attrs={
-                    'placeholder': 'Ex : Très jolie tomate de ma production',
+                    'placeholder': 'Ex : Très jolie pomme de terre de ma production (300 caractères maximum)',
                     'maxlength': '300',
                 }
             ),
@@ -33,7 +33,7 @@ class SeedSearchForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(SeedSearchForm, self).__init__(*args, **kwargs)
         self.fields['search'].widget.attrs.update({
-            'class': 'form-control mr-sm-2 col-lg-7',
+            'class': 'form-control col-lg-9 col-sm-12',
             'placeholder': 'Chercher une graine',
             'aria-label': 'Search'
         })

@@ -1,0 +1,16 @@
+@charset "UTF-8";
+
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif !important;
+
+  font-family: 'Snippet', sans-serif !important;
+
+  font-family: 'Vidaloka', serif !important;
+
+
+}

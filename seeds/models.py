@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from django.db import models, Error
 from .text_constants import (
     GLOBAL_ERROR_MSG,
+    SEED_DELETED_MSG,
 )
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill

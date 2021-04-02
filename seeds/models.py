@@ -3,7 +3,9 @@ from django.contrib.postgres.search import SearchQuery, SearchVector
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models, Error
-
+from .text_constants import (
+    GLOBAL_ERROR_MSG,
+)
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 
@@ -45,7 +47,7 @@ class SeedManager(models.Manager):
             seed.save()
         except Error:
             seed.available = seed_old_state
-            messages.append({40: 'Une erreur est survenue'})
+            messages.append({40: GLOBAL_ERROR_MSG})
         return messages
 
     def delete_seed(self, seed_id):
@@ -54,15 +56,14 @@ class SeedManager(models.Manager):
         try:
             seed_name = seed.name
             seed.delete()
-            messages = [{40: 'Vous venez de supprimer : {}'.format(seed_name)}]
+            messages = [{40: SEED_DELETED_MSG.format(seed_name)}]
         except Error:
-            messages = [{40: 'Une erreur est survenue'}]
+            messages = [{40: GLOBAL_ERROR_MSG}]
         return messages
 
     def get_seed(slef, seed_id):
         seed = get_object_or_404(Seed, pk=seed_id)
         return seed
-
 
 class Seed(models.Model):
 

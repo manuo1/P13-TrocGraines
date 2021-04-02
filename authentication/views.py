@@ -9,7 +9,12 @@ from django.views import generic
 
 from .forms import PersonalUserCreationForm, UserInformationUpdateForm
 from .models import UsersManager
-
+from .text_constants import (
+    HELLO_MSG,
+    GOODBYE_MSG,
+    WELCOME_MSG,
+    PSW_CHANGE_CONFIRM_MSG,
+)
 user_manager = UsersManager()
 
 class UserSignUpView(generic.CreateView):
@@ -22,10 +27,7 @@ class UserSignUpView(generic.CreateView):
         valid = super().form_valid(form)
         login(self.request, self.object)
         messages.success(
-            self.request,
-            'Bienvenu sur Troc Graine {}, heureux de vous connaître'.format(
-                self.request.user.username
-            )
+            self.request,WELCOME_MSG.format(self.request.user.username)
         )
         return valid
 
@@ -35,8 +37,7 @@ class UserLoginView(LoginView):
         """ add login succes messages """
         valid = super().form_valid(form)
         messages.success(
-            self.request,
-            'Content de vous revoir {}'.format(self.request.user.username)
+            self.request,HELLO_MSG.format(self.request.user.username)
         )
         return valid
 
@@ -46,8 +47,7 @@ class UserLogoutView(LogoutView):
     def dispatch(self, request, *args, **kwargs):
         """ add logout confirm messages """
         messages.success(
-            request,
-            'Vous êtes déconnecté(e), au revoir {}'.format(request.user.username)
+            request, GOODBYE_MSG.format(request.user.username)
         )
         return super().dispatch(request, *args, **kwargs)
 
@@ -56,7 +56,7 @@ class PersonalPasswordChangeView(PasswordChangeView):
 
 
     def form_valid(self, form):
-        messages.success(self.request, 'Votre mot de passe a été modifié')
+        messages.success(self.request, PSW_CHANGE_CONFIRM_MSG)
         return super().form_valid(form)
 
 

@@ -30,6 +30,20 @@ NEW_EXCHANGE_MESSAGE_FOOTER = (
     'PS: Ceci est un email automatique, merci de ne pas y répondre.'
 )
 
-NEW_EXCHANGE_MESSAGE_NO_SEED_TO_EXCHANGE =(
-    '( Rien à échanger pour l\'instant )'
+NEW_EXCHANGE_MESSAGE_NO_SEED_TO_EXCHANGE ='( Rien à échanger pour l\'instant )'
+
+NEW_EXCHANGE_MESSAGE_SEED_NOT_AVAILABLE = (
+    '( Non disponible pour l\'instant : {} )'
 )
+UNABLE_TO_SEND_MESSAGE = 'Impossible d\'envoyer le message ( {} )'
+
+MESSAGE_SENT = 'Votre message a été envoyé'
+
+MESSAGE_SENT_BUT_SAVING_ERROR = (
+    'Désolé, une erreur a empeché l\'enregistrement '
+    'de votre message mais l\'email a bien été envoyé'
+)
+
+GLOBAL_ERROR_MSG = 'Une erreur est survenue'
+
+DELETED_MSG = 'Message suprimé'

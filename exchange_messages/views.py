@@ -9,7 +9,12 @@ from .text_constants import (
     NEW_EXCHANGE_MESSAGE_SUBJECT,
     NEW_EXCHANGE_MESSAGE_NO_SEED_TO_EXCHANGE,
     NEW_EXCHANGE_MESSAGE_HEADER,
-    NEW_EXCHANGE_MESSAGE_FOOTER
+    NEW_EXCHANGE_MESSAGE_FOOTER,
+    NEW_EXCHANGE_MESSAGE_SEED_NOT_AVAILABLE,
+    UNABLE_TO_SEND_MESSAGE,
+    MESSAGE_SENT,
+    MESSAGE_SENT_BUT_SAVING_ERROR,
+    GLOBAL_ERROR_MSG
 )
 from trocgraines_config.settings.common import DEFAULT_FROM_EMAIL
 from. forms import NewMessageForm
@@ -33,7 +38,7 @@ def new_message(request, seed_id, owner_id):
         for seed in proposed_seeds_list:
             if seed.available == False:
                 list_of_seed_names.append(
-                    '( Non disponible pour l\'instant : {} )'.format(seed.name)
+                    NEW_EXCHANGE_MESSAGE_SEED_NOT_AVAILABLE.format(seed.name)
                 )
             else:
                 list_of_seed_names.append(seed.name)
@@ -75,29 +80,20 @@ def new_message(request, seed_id, owner_id):
                 print(send_mail_return)
             except SMTPException as smtp_error:
                 messages.error(
-                    request,
-                    'Impossible d\'envoyer le message ( {} )'.format(
-                        smtp_error
-                    )
+                    request, UNABLE_TO_SEND_MESSAGE.format(smtp_error)
                 )
 
             if send_mail_return == 1:
                 """ add success message """
                 messages.success(
-                    request,'Message envoyé'.format(
-                        request.user.username
-                    )
+                    request, MESSAGE_SENT.format(request.user.username)
                 )
                 """ save discussion in database """
                 if not exchange_message_manager.save_exchange_message(
                     **exchange_message_data):
 
                     """ add error message """
-                    messages.error(
-                        request,
-                        'Désolé, une erreur a empeché l\'enregistrement '
-                        'de votre message mais l\'email a bien été envoyé'
-                    )
+                    messages.error( request, MESSAGE_SENT_BUT_SAVING_ERROR )
                 my_discussions = (
                     exchange_message_manager.get_user_discussions(
                     request.user)
@@ -108,7 +104,10 @@ def new_message(request, seed_id, owner_id):
 
 
     new_message = NEW_EXCHANGE_MESSAGE_USER_MESSAGE.format(
-        seed_owner.username, needed_seed.name, list_of_proposed_seeds)
+        seed_owner.username,
+        needed_seed.name,
+        list_of_proposed_seeds
+    )
     new_message_form = NewMessageForm(initial={'message': new_message})
     context ={'new_message_form': new_message_form}
     return render(request, 'new_message.html', context)
@@ -126,7 +125,7 @@ def my_messages(request):
             )
         except Http404:
             exchange_message_manager_message.append(
-                {40: 'Une erreur est survenue'}
+                {40: GLOBAL_ERROR_MSG }
             )
 
 

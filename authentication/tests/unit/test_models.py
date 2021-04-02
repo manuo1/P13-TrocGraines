@@ -89,3 +89,12 @@ class ModelsUnitTest(TestCase):
             'Une erreur est survenue',
             messages[0].values()
         )
+    def test_update_user_data_with_email_integrityerror_error_exception(self):
+        self.new_data['username'] = self.test_user_ie.username
+        messages = self.user_manager.update_user_data(
+            self.test_user_ie, self.new_data
+        )
+        self.assertIn(
+            'Cet email est déja utilisé',
+            messages[0].values()
+        )

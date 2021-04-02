@@ -2,7 +2,10 @@ from django.db import Error, models
 from django.shortcuts import get_object_or_404
 
 from authentication.models import User
-
+from .text_constants import (
+    GLOBAL_ERROR_MSG,
+    DELETED_MSG
+)
 
 class ExchangeMessageManager(models.Manager):
 
@@ -34,9 +37,9 @@ class ExchangeMessageManager(models.Manager):
         discussion = get_object_or_404(Discussion, pk=discussion_id)
         try:
             discussion.delete()
-            messages = [{40: 'Message suprimée'}]
+            messages = [{40: DELETED_MSG }]
         except Error:
-            messages = [{40: 'Une erreur est survenue'}]
+            messages = [{40: GLOBAL_ERROR_MSG }]
         return messages
 
 
@@ -54,7 +57,10 @@ class ExchangeMessage(models.Model):
 
 class Discussion(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE)
-    exchange_message = models.ForeignKey(ExchangeMessage, on_delete=models.CASCADE)
+    exchange_message = models.ForeignKey(
+        ExchangeMessage,
+        on_delete=models.CASCADE
+    )
 
     def __str__(self):
         ret = (

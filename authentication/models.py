@@ -1,7 +1,13 @@
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import AbstractUser
 from django.db import IntegrityError, Error, models
-
+from .text_constants import (
+    USERNAME_CHANGE_CONFIRM_MSG,
+    USERNAME_CHANGE_UNIQ_ERROR_MSG,
+    EMAIL_CHANGE_CONFIRM_MSG,
+    EMAIL_CHANGE_UNIQ_ERROR_MSG,
+    GLOBAL_ERROR_MSG,
+)
 
 class User(AbstractUser):
     ranking = models.SmallIntegerField(default=100)
@@ -25,25 +31,25 @@ class UsersManager(models.Manager):
             user.username = new_data['username']
             try:
                 user.save()
-                messages.append({25: 'Votre nom d’utilisateur a été modifié'})
+                messages.append({25: USERNAME_CHANGE_CONFIRM_MSG })
             except IntegrityError:
                 user.username = previous_user_data['username']
-                messages.append({40: 'Ce nom d\'utilisateur est déja utilisé'})
+                messages.append({40: USERNAME_CHANGE_UNIQ_ERROR_MSG })
             except Error:
                 user.username = previous_user_data['username']
-                messages.append({40: 'Une erreur est survenue'})
+                messages.append({40: GLOBAL_ERROR_MSG})
         """ try to change the email if it is different """
         if user.email != new_data['email']:
             user.email = new_data['email']
             try:
                 user.save()
-                messages.append({25: 'Votre email a été modifié'})
+                messages.append({25: EMAIL_CHANGE_CONFIRM_MSG })
             except IntegrityError:
                 user.email = previous_user_data['email']
-                messages.append({40: 'Cet email est déja utilisé'})
+                messages.append({40: EMAIL_CHANGE_UNIQ_ERROR_MSG })
             except Error:
                 user.email = previous_user_data['email']
-                messages.append({40: 'Une erreur est survenue'})
+                messages.append({40: GLOBAL_ERROR_MSG })
 
         return messages
 

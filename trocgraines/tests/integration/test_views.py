@@ -43,8 +43,8 @@ class TestTrocgrainesViews(TestCase):
         seed_2 = self.create_a_seed('name_2')
         response = self.client.get(reverse('trocgraines:homepage'))
         self.assertTrue (
-            seed_1 in response.context['matching_list']
-            and seed_2 in response.context['matching_list']
+            seed_1 in response.context['page_obj']
+            and seed_2 in response.context['page_obj']
         )
 
     def test_homepage_post_return_searched_seed_matching_list(self):
@@ -52,9 +52,9 @@ class TestTrocgrainesViews(TestCase):
         seed_y = self.create_a_seed('name_y')
         response = self.client.post(reverse('trocgraines:homepage'), {'search': 'name_x'})
         self.assertTrue (
-            seed_x in response.context['matching_list']
+            seed_x in response.context['page_obj']
             and seed_x.name in response.context['searched_seed']
-            and seed_y not in response.context['matching_list']
+            and seed_y not in response.context['page_obj']
         )
 
 

@@ -67,7 +67,7 @@
             </div>
             <div class="col-lg-6 text-right">
               {% if seed.available %}
-              <a href="{% url 'exchange_messages:new_message' seed_id=seed.id  owner_id=seed.owner.id%}" class="btn btn-primary btn-sm">Echanger</a>
+              <a href="{% url 'exchange_messages:new_message' seed_id=seed.id  owner_id=seed.owner.id%}" class="btn btn-primary btn-sm" id='exchange_btn_{{seed.id}}'>Echanger</a>
               {% else %}
               <a class="btn btn-secondary btn-sm" disabled>Non disponible pour l'instant</a>
               {% endif %}

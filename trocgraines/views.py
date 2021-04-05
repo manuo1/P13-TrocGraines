@@ -27,3 +27,6 @@ def homepage(request):
         'search_form': SeedSearchForm()
     }
     return render(request, 'homepage.html', context)
+
+def legal_disclaimers(request):
+    return render(request, 'legal_disclaimers.html')

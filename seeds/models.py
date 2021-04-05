@@ -28,7 +28,7 @@ class SeedManager(models.Manager):
         matching_list = (
             Seed.objects.annotate(search=SearchVector('name'))
             .filter(search=SearchQuery(searched_seed))
-            .order_by('name')
+            .order_by('-available', 'name')
         )
         return matching_list
 

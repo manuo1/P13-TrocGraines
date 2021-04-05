@@ -18,7 +18,7 @@
 
 
     <!-- CSS -->
-    <link href="{% static 'css/compressed.css'%}" rel="stylesheet" type="text/css">
+    <!-- CSS <link href="{% static 'css/compressed.css'%}" rel="stylesheet" type="text/css"> -->
     {% load compress %}
     {% compress css %}
         <link type="text/x-scss" href="{% static 'theme.scss' %}" rel="stylesheet" media="screen">
@@ -112,8 +112,8 @@
      <footer class="footer bg-primary mt-auto py-3 rounded">
        <div class="container">
          <span class='d-flex justify-content-around'>
-           <a class="text-dark" href="{% url 'trocgraines:homepage' %}">Mention légales</a>
-           <a class="text-dark" href="{% url 'trocgraines:homepage' %}">Contact</a>
+           <a class="text-dark" href="{% url 'trocgraines:legal_disclaimers' %}">Mention légales</a>
+           <a class="text-dark" href="mailto:trocgraines@free.fr">Contact</a>
         </span>
        </div>
      </footer>

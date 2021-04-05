@@ -9,6 +9,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
+import mimetypes
 from pathlib import Path
 from django.contrib.messages import constants as messages
 
@@ -177,3 +178,5 @@ MESSAGE_TAGS = {
 COMPRESS_PRECOMPILERS = (
     ('text/x-scss', 'django_libsass.SassCompiler'),
 )
+
+mimetypes.add_type("text/css", ".css", True)

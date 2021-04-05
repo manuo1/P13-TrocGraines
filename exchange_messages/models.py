@@ -43,8 +43,6 @@ class ExchangeMessageManager(models.Manager):
         return messages
 
 
-
-
 class ExchangeMessage(models.Model):
     recipient = models.ForeignKey(User, on_delete=models.CASCADE)
     subject = models.CharField(max_length=100)

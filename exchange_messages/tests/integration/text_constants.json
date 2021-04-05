@@ -1,0 +1,149 @@
+
+[
+  [
+    {'True': True, 'False': False, 'None': None
+    },
+    {'csrf_token': <SimpleLazyObject: 'silkGAgc5ALNnssqYLFZ2gc0uAPUonSN4nmzIB2DrFPdPK4EAkc8l0Fed6SpKz93'>,
+      'request': <WSGIRequest: POST '/exchange_messages/new_message/2/3'>,
+      'user': <SimpleLazyObject: <User: test_name>>,
+      'perms': <django.contrib.auth.context_processors.PermWrapper object at 0x7fd707a5aac0>, 
+      'messages': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x7fd707a37f70>, 'DEFAULT_MESSAGE_LEVELS':
+      {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}
+    },
+      {
+
+
+      },
+      {'new_message_form': <NewMessageForm bound=False, valid=False, fields=(message)>,
+        'compressed': {'name': None, 'url': '/static/CACHE/css/theme.8ca5db39baa7.css', 'media': 'screen'}}
+  ],
+  [
+    {'True': True, 'False': False, 'None': None
+    },
+    {'csrf_token': <SimpleLazyObject: 'silkGAgc5ALNnssqYLFZ2gc0uAPUonSN4nmzIB2DrFPdPK4EAkc8l0Fed6SpKz93'>, 'request': <WSGIRequest: POST '/exchange_messages/new_message/2/3'>, 'user': <SimpleLazyObject: <User: test_name>>, 'perms': <django.contrib.auth.context_processors.PermWrapper object at 0x7fd707a5aac0>, 'messages': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x7fd707a37f70>, 'DEFAULT_MESSAGE_LEVELS':
+      {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40}
+    },
+      {
+
+
+      },
+      {'new_message_form': <NewMessageForm bound=False, valid=False, fields=(message)>, 'compressed':
+        {'name': None, 'url': '/static/CACHE/css/theme.8ca5db39baa7.css', 'media': 'screen'}}
+  ],
+  [
+    {'True': True, 'False': False, 'None': None
+    },
+    {'True': True, 'False': False, 'None': None, 'csrf_token': <SimpleLazyObject: 'silkGAgc5ALNnssqYLFZ2gc0uAPUonSN4nmzIB2DrFPdPK4EAkc8l0Fed6SpKz93'>, 'request': <WSGIRequest: POST '/exchange_messages/new_message/2/3'>, 'user': <SimpleLazyObject: <User: test_name>>, 'perms': <django.contrib.auth.context_processors.PermWrapper object at 0x7fd707a5aac0>, 'messages': <django.contrib.messages.storage.fallback.FallbackStorage object at 0x7fd707a37f70>, 'DEFAULT_MESSAGE_LEVELS':
+      {'DEBUG': 10, 'INFO': 20, 'SUCCESS': 25, 'WARNING': 30, 'ERROR': 40
+        }, 'new_message_form': <NewMessageForm bound=False, valid=False, fields=(message)>, 'compressed':
+      {'name': None, 'url': '/static/CACHE/css/theme.8ca5db39baa7.css', 'media': 'screen'}}
+  ],
+  [
+    {'True': True, 'False': False, 'None': None
+    },
+    {'True': True, 'False': False, 'None': None, 'field_class': '', 'field_template': 'bootstrap4/field.html', 'form_show_errors': True, 'form_show_labels': True, 'label_class': '', 'form': <NewMessageForm bound=False, valid=False, fields=(message)>}
+  ],
+  [
+    {'True': True, 'False': False, 'None': None
+    },
+    {'True': True, 'False': False, 'None': None, 'field_class': '', 'field_template': 'bootstrap4/field.html', 'form_show_errors': True, 'form_show_labels': True, 'label_class': '', 'form': <NewMessageForm bound=False, valid=False, fields=(message)>
+    },
+    {}
+  ],
+  [
+    {'True': True, 'False': False, 'None': None
+    },
+    {'True': True, 'False': False, 'None': None, 'field_class': '', 'field_template': 'bootstrap4/field.html', 'form_show_errors': True, 'form_show_labels': True, 'label_class': '', 'form': <NewMessageForm bound=False, valid=False, fields=(message)>
+    },
+    {'forloop':
+      {'parentloop':
+        {
+
+
+          }, 'counter0': 0, 'counter': 1, 'revcounter': 1, 'revcounter0': 0, 'first': True, 'last': True
+          }, 'field': <django.forms.boundfield.BoundField object at 0x7fd7079fe160>
+        },
+        {}
+  ],
+  [
+    {'True': True, 'False': False, 'None': None
+    },
+    {'widget':
+      {'name': 'message', 'is_hidden': False, 'required': True, 'value': "Bonjour test_name_owner,\nJe suis intéressé(e) par les graines de test seed name que vous avez proposez sur le site Troc Graines.\nVoici la liste des graines que je propose :\n\n    - ( Rien à échanger pour l'instant )\n\nSeriez-vous d’accord pour un échange ?", 'attrs':
+        {'cols': '40', 'rows': '10', 'class': 'textarea form-control', 'required': True, 'id': 'id_message'
+          }, 'template_name': 'django/forms/widgets/textarea.html'}}
+  ],
+  [
+    {'True': True, 'False': False, 'None': None
+    },
+    {'widget':
+      {'name': 'message', 'is_hidden': False, 'required': True, 'value': "Bonjour test_name_owner,\nJe suis intéressé(e) par les graines de test seed name que vous avez proposez sur le site Troc Graines.\nVoici la liste des graines que je propose :\n\n    - ( Rien à échanger pour l'instant )\n\nSeriez-vous d’accord pour un échange ?", 'attrs':
+        {'cols': '40', 'rows': '10', 'class': 'textarea form-control', 'required': True, 'id': 'id_message'
+          }, 'template_name': 'django/forms/widgets/textarea.html'}
+        },
+        {}
+  ],
+  [
+    {'True': True, 'False': False, 'None': None
+    },
+    {'True': True, 'False': False, 'None': None, 'field_class': '', 'field_template': 'bootstrap4/field.html', 'form_show_errors': True, 'form_show_labels': True, 'label_class': '', 'form': <NewMessageForm bound=False, valid=False, fields=(message)>
+    },
+    {'forloop':
+      {'parentloop':
+        {
+
+
+          }, 'counter0': 0, 'counter': 1, 'revcounter': 1, 'revcounter0': 0, 'first': True, 'last': True
+          }, 'field': <django.forms.boundfield.BoundField object at 0x7fd7079fe160>
+        },
+        {
+
+
+        },
+        {}
+  ],
+  [
+    {'True': True, 'False': False, 'None': None
+    },
+    {'True': True, 'False': False, 'None': None, 'field_class': '', 'field_template': 'bootstrap4/field.html', 'form_show_errors': True, 'form_show_labels': True, 'label_class': '', 'form': <NewMessageForm bound=False, valid=False, fields=(message)>
+    },
+    {'forloop':
+      {'parentloop':
+        {
+
+
+          }, 'counter0': 0, 'counter': 1, 'revcounter': 1, 'revcounter0': 0, 'first': True, 'last': True
+          }, 'field': <django.forms.boundfield.BoundField object at 0x7fd7079fe160>
+        },
+        {
+
+
+        },
+        {
+
+
+        },
+        {}
+  ],
+  [
+    {'True': True, 'False': False, 'None': None
+    },
+    {'True': True, 'False': False, 'None': None, 'field_class': '', 'field_template': 'bootstrap4/field.html', 'form_show_errors': True, 'form_show_labels': True, 'label_class': '', 'form': <NewMessageForm bound=False, valid=False, fields=(message)>
+    },
+    {'forloop':
+      {'parentloop':
+        {
+
+
+          }, 'counter0': 0, 'counter': 1, 'revcounter': 1, 'revcounter0': 0, 'first': True, 'last': True
+          }, 'field': <django.forms.boundfield.BoundField object at 0x7fd7079fe160>
+        },
+        {
+
+
+        },
+        {
+
+
+        },
+        {}]]

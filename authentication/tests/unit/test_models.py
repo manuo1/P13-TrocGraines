@@ -1,6 +1,6 @@
 from unittest import mock
 from django.db.utils import IntegrityError, Error
-from django.test import RequestFactory, TestCase
+from django.test import TestCase
 
 from ...models import UsersManager
 
@@ -34,6 +34,7 @@ class ModelsUnitTest(TestCase):
                 self.password = 'testpassword'
             def save(self):
                 raise Error
+
         self.test_user = MockUser()
         self.test_user_ie = MockUser_IntegrityError()
         self.test_user_e = MockUser_Error()
@@ -98,3 +99,12 @@ class ModelsUnitTest(TestCase):
             'Cet email est déja utilisé',
             messages[0].values()
         )
+    def get_user(self):
+        with mock.patch(
+            'seeds.models.get_object_or_404',
+            return_value=self.test_user,
+        ):
+            user = self.user_manager.get_user('1234')
+            self.assertTrue (
+                 user == self.test_user
+            )

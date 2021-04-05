@@ -77,7 +77,6 @@ def new_message(request, seed_id, owner_id):
                     # raise an SMTPException if an error occurs
                     fail_silently=False,
                 )
-                print(send_mail_return)
             except SMTPException as smtp_error:
                 messages.error(
                     request, UNABLE_TO_SEND_MESSAGE.format(smtp_error)

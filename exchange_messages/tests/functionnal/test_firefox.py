@@ -11,7 +11,7 @@ from seeds.models import Seed
 from exchange_messages.models import Discussion
 
 firefox_options = webdriver.FirefoxOptions()
-#firefox_options.add_argument('--headless')
+firefox_options.add_argument('--headless')
 firefox_options.set_preference("browser.privatebrowsing.autostart", True)
 
 

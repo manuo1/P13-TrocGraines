@@ -5,7 +5,7 @@ NEW_MESSAGE_LABEL = (
 
 NEW_EXCHANGE_MESSAGE_SUBJECT =(
     'Bonjour {}, {} souhaiterait échanger une de vos graines présente sur '
-    'Torc Graine'
+    'Torc Graines'
 )
 NEW_EXCHANGE_MESSAGE_HEADER = (
     '\nVoici son message :\n'

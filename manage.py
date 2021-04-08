@@ -5,6 +5,7 @@ import sys
 
 from dotenv import find_dotenv, load_dotenv
 
+
 def main():
     """Run administrative tasks."""
 
@@ -14,7 +15,7 @@ def main():
     environment = os.environ['ENVIRONMENT']
     os.environ.setdefault(
         'DJANGO_SETTINGS_MODULE',
-        'trocgraines_config.settings.{}'.format(environment)
+        'trocgraines_config.settings.{}'.format(environment),
     )
     try:
         from django.core.management import execute_from_command_line

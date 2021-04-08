@@ -8,9 +8,10 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-import os
 import mimetypes
+import os
 from pathlib import Path
+
 from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -86,12 +87,12 @@ WSGI_APPLICATION = 'trocgraines_config.wsgi.application'
 
 DATABASES = {
     'default': {
-	'ENGINE': 'django.db.backends.postgresql',
-	'NAME': os.environ['DATABASES_NAME'],
-	'USER': os.environ['DATABASES_USER'],
-	'PASSWORD': os.environ['DATABASES_PASSWORD'],
-	'HOST': 'localhost',
-	'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ['DATABASES_NAME'],
+        'USER': os.environ['DATABASES_USER'],
+        'PASSWORD': os.environ['DATABASES_PASSWORD'],
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -101,24 +102,20 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME':
-            'django.contrib.auth.password_validation.'
-            'UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        'UserAttributeSimilarityValidator',
     },
     {
-        'NAME':
-            'django.contrib.auth.password_validation.'
-            'MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        'MinimumLengthValidator',
     },
     {
-        'NAME':
-            'django.contrib.auth.password_validation.'
-            'CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        'CommonPasswordValidator',
     },
     {
-        'NAME':
-            'django.contrib.auth.password_validation.'
-            'NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        'NumericPasswordValidator',
     },
 ]
 
@@ -160,9 +157,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
-EMAIL_HOST = os.environ['EMAIL_HOST'] #'smtp.free.fr'
-EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER'] #'youremail@free.fr'
-EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD'] #'email_password'
+EMAIL_HOST = os.environ['EMAIL_HOST']  # 'smtp.free.fr'
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']  # 'youremail@free.fr'
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']  # 'email_password'
 EMAIL_PORT = os.environ['EMAIL_PORT']
 DEFAULT_FROM_EMAIL = 'TrocGraines_NoReply@free.fr'
 
@@ -176,7 +173,5 @@ MESSAGE_TAGS = {
 }
 
 # for django-libsass
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'django_libsass.SassCompiler'),
-)
+COMPRESS_PRECOMPILERS = (('text/x-scss', 'django_libsass.SassCompiler'),)
 mimetypes.add_type("text/css", ".css", True)

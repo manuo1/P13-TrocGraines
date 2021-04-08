@@ -1,5 +1,4 @@
-"""
-WSGI config for trocgraines project.
+"""WSGI config for trocgraines project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -17,7 +16,8 @@ from dotenv import find_dotenv, load_dotenv
 load_dotenv(find_dotenv())
 environment = os.environ['ENVIRONMENT']
 os.environ.setdefault(
-    'DJANGO_SETTINGS_MODULE', 'trocgraines_config.settings.{}'.format(environment)
+    'DJANGO_SETTINGS_MODULE',
+    'trocgraines_config.settings.{}'.format(environment),
 )
 
 application = get_wsgi_application()

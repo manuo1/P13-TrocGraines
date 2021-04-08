@@ -1,14 +1,15 @@
 import os
-from django.core import mail
-from trocgraines_config.settings.common import BASE_DIR
-from django.contrib import auth
+
 from django.contrib.auth import get_user_model
+from django.core import mail
 from django.shortcuts import get_object_or_404
 from django.test import Client, TestCase
 from django.urls import reverse
 
+from exchange_messages.models import Discussion
 from seeds.models import Seed
-from exchange_messages.models import Discussion, ExchangeMessage
+from trocgraines_config.settings.common import BASE_DIR
+
 
 class TestExchangeMessagesViews(TestCase):
     def setUp(self):
@@ -26,28 +27,27 @@ class TestExchangeMessagesViews(TestCase):
         )
         self.log_form_owner = {
             'username': 'test_name_owner',
-            'password': 'test_password'
+            'password': 'test_password',
         }
         self.log_form_user = {
             'username': 'test_name',
-            'password': 'test_password'
+            'password': 'test_password',
         }
         self.image_path = os.path.join(
-            BASE_DIR,
-            "static/assets/img/image_test.png"
+            BASE_DIR, "static/assets/img/image_test.png"
         )
         self.test_seed_data = {
             'name': 'test seed name',
             'description': 'test seed description',
             'photo': 'img_data',
-            'available': True
+            'available': True,
         }
 
     def create_a_seed(self):
         with open(self.image_path, 'rb') as img_data:
             self.test_seed_data['photo'] = img_data
-            self.client.post( reverse('seeds:add_seed'), self.test_seed_data )
-        new_seed = get_object_or_404( Seed, name=self.test_seed_data['name'] )
+            self.client.post(reverse('seeds:add_seed'), self.test_seed_data)
+        new_seed = get_object_or_404(Seed, name=self.test_seed_data['name'])
         return new_seed
 
     def test_user_can_generate_a_new_message(self):
@@ -56,30 +56,33 @@ class TestExchangeMessagesViews(TestCase):
         self.client.logout()
         self.client.login(**self.log_form_user)
         response = self.client.get(
-            reverse('exchange_messages:new_message',
-                args=[seed_of_owner.id, self.test_seed_owner.id]
+            reverse(
+                'exchange_messages:new_message',
+                args=[seed_of_owner.id, self.test_seed_owner.id],
             )
         )
         self.assertTrue(
             'test_name_owner' in str(response.content)
             and 'test seed name' in str(response.content)
         )
+
     def test_user_can_send_a_new_message(self):
         self.client.login(**self.log_form_owner)
         seed_of_owner = self.create_a_seed()
         self.client.logout()
         self.client.login(**self.log_form_user)
         self.test_seed_data['name'] = 'test seed name2'
-        seed_of_user = self.create_a_seed()
+        self.create_a_seed()
         self.test_seed_data['name'] = 'test seed name3'
         self.test_seed_data['available'] = False
-        seed_unaviable_of_user = self.create_a_seed()
+        self.create_a_seed()
         number_of_discussion_before = Discussion.objects.count()
-        response = self.client.post(
-            reverse('exchange_messages:new_message',
-                args=[seed_of_owner.id, self.test_seed_owner.id]
+        self.client.post(
+            reverse(
+                'exchange_messages:new_message',
+                args=[seed_of_owner.id, self.test_seed_owner.id],
             ),
-            {'message': 'exchange message'}
+            {'message': 'exchange message'},
         )
         number_of_discussion_after = Discussion.objects.count()
         mail_subject = mail.outbox[0].subject
@@ -95,16 +98,17 @@ class TestExchangeMessagesViews(TestCase):
         self.client.logout()
         self.client.login(**self.log_form_user)
         self.client.post(
-            reverse('exchange_messages:new_message',
-                args=[seed_of_owner.id, self.test_seed_owner.id]
+            reverse(
+                'exchange_messages:new_message',
+                args=[seed_of_owner.id, self.test_seed_owner.id],
             ),
-            {'message': 'a new exchange message'}
+            {'message': 'a new exchange message'},
         )
         number_of_discussion_before = Discussion.objects.count()
         discussion = get_object_or_404(Discussion, sender=self.test_user.id)
-        response = self.client.post(
+        self.client.post(
             reverse('exchange_messages:my_messages'),
-            {'delete_discussion': discussion.id}
+            {'delete_discussion': discussion.id},
         )
         number_of_discussion_after = Discussion.objects.count()
         self.assertTrue(

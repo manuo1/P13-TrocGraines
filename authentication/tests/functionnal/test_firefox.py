@@ -41,7 +41,7 @@ class FirefoxFunctionalTestCases(LiveServerTestCase):
         self.assertTrue(self.element_is_present('login_btn'))
 
     def test_user_can_create_an_account(self):
-        """ test if user can create an account and login with """
+        """test if user can create an account and login with."""
         self.go_to_url_name('authentication:signup')
         self.write_in_id('id_username', 'testusername2')
         self.write_in_id('id_email', 'testusername2@mail.com')
@@ -55,7 +55,7 @@ class FirefoxFunctionalTestCases(LiveServerTestCase):
         self.assertTrue(self.element_is_present('my_personal_infos_btn'))
 
     def test_user_can_modify_their_personal_information(self):
-        """test if the user can modify their personal information"""
+        """test if the user can modify their personal information."""
         self.login_the_user('testusername', 'testpassword')
         self.click_on_id('my_account_btn')
         self.click_on_id('my_personal_infos_btn')
@@ -71,7 +71,7 @@ class FirefoxFunctionalTestCases(LiveServerTestCase):
         )
 
     def test_user_can_change_his_password(self):
-        """test if the user can change his password"""
+        """test if the user can change his password."""
         self.login_the_user('testusername', 'testpassword')
         self.click_on_id('my_account_btn')
         self.click_on_id('my_personal_infos_btn')
@@ -87,32 +87,31 @@ class FirefoxFunctionalTestCases(LiveServerTestCase):
             "Content de vous revoir testusername" in welcom_message
         )
 
-
     """ some methods to improve the readability of tests """
 
     def go_to_url_name(self, url_name):
-        """ access a web page with its URL name  """
+        """access a web page with its URL name."""
         self.driver.get(self.live_server_url + reverse(url_name))
 
     def click_on_id(self, id):
-        """ find element by id and click on it """
+        """find element by id and click on it."""
         self.driver.find_element_by_id(id).click()
 
     def write_in_id(self, id, value):
-        """ find element by id and send keys inside """
+        """find element by id and send keys inside."""
         element = self.driver.find_element_by_id(id)
         element.clear()
         element.send_keys(value)
 
     def login_the_user(self, username='testusername', password='testpassword'):
-        """ run the login procedure  """
+        """run the login procedure."""
         self.go_to_url_name('authentication:login')
         self.write_in_id('id_username', username)
         self.write_in_id('id_password', password)
         self.click_on_id('login_form_btn')
 
     def element_is_present(self, id):
-        """ return true if the element with this id is present """
+        """return true if the element with this id is present."""
         try:
             self.driver.find_element_by_id(id)
             return True
@@ -120,7 +119,7 @@ class FirefoxFunctionalTestCases(LiveServerTestCase):
             return False
 
     def get_html_in(self, element_id):
-        """ find element by id and return the html contained inside """
+        """find element by id and return the html contained inside."""
         html = self.driver.find_element_by_id(element_id).get_attribute(
             'innerHTML'
         )

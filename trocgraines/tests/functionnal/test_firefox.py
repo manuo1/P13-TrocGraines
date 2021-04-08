@@ -27,15 +27,14 @@ class FirefoxFunctionalTestCases(LiveServerTestCase):
         pass
 
     def test_homepage(self):
-        """ test simple homepage display """
+        """test simple homepage display."""
         self.go_to_url_name('trocgraines:homepage')
         self.assertTrue(self.element_is_present('seed_search_form'))
-
 
     """ some methods to improve the readability of tests """
 
     def go_to_url_name(self, url_name):
-        """ access a web page with its URL name  """
+        """access a web page with its URL name."""
         self.driver.get(self.live_server_url + reverse(url_name))
 
     def element_is_present(self, id):

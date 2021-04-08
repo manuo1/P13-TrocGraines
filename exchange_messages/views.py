@@ -1,30 +1,31 @@
-from django.shortcuts import render
-from django.core.mail import send_mail
-from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from django.http import Http404
 from smtplib import SMTPException
-from .text_constants import (
-    NEW_EXCHANGE_MESSAGE_USER_MESSAGE,
-    NEW_EXCHANGE_MESSAGE_SUBJECT,
-    NEW_EXCHANGE_MESSAGE_NO_SEED_TO_EXCHANGE,
-    NEW_EXCHANGE_MESSAGE_HEADER,
-    NEW_EXCHANGE_MESSAGE_FOOTER,
-    NEW_EXCHANGE_MESSAGE_SEED_NOT_AVAILABLE,
-    UNABLE_TO_SEND_MESSAGE,
-    MESSAGE_SENT,
-    MESSAGE_SENT_BUT_SAVING_ERROR,
-    GLOBAL_ERROR_MSG
-)
-from trocgraines_config.settings.common import DEFAULT_FROM_EMAIL
-from. forms import NewMessageForm
+
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from django.http import Http404
+from django.shortcuts import render
+
 from authentication.models import UsersManager
 from seeds.models import SeedManager
-from.models import ExchangeMessageManager
+from trocgraines_config.settings.common import DEFAULT_FROM_EMAIL
+
+from .forms import NewMessageForm
+from .models import ExchangeMessageManager
+from .text_constants import (GLOBAL_ERROR_MSG, MESSAGE_SENT,
+                             MESSAGE_SENT_BUT_SAVING_ERROR,
+                             NEW_EXCHANGE_MESSAGE_FOOTER,
+                             NEW_EXCHANGE_MESSAGE_HEADER,
+                             NEW_EXCHANGE_MESSAGE_NO_SEED_TO_EXCHANGE,
+                             NEW_EXCHANGE_MESSAGE_SEED_NOT_AVAILABLE,
+                             NEW_EXCHANGE_MESSAGE_SUBJECT,
+                             NEW_EXCHANGE_MESSAGE_USER_MESSAGE,
+                             UNABLE_TO_SEND_MESSAGE)
 
 user_manager = UsersManager()
 seed_manager = SeedManager()
 exchange_message_manager = ExchangeMessageManager()
+
 
 @login_required()
 def new_message(request, seed_id, owner_id):
@@ -36,14 +37,13 @@ def new_message(request, seed_id, owner_id):
     if proposed_seeds_list:
         list_of_seed_names = []
         for seed in proposed_seeds_list:
-            if seed.available == False:
+            if not seed.available:
                 list_of_seed_names.append(
                     NEW_EXCHANGE_MESSAGE_SEED_NOT_AVAILABLE.format(seed.name)
                 )
             else:
                 list_of_seed_names.append(seed.name)
         list_of_proposed_seeds = ', \n    - '.join(list_of_seed_names)
-
 
     if request.method == 'POST':
         form = NewMessageForm(request.POST)
@@ -52,8 +52,9 @@ def new_message(request, seed_id, owner_id):
                 'recipient': seed_owner,
                 'sender': request.user,
                 'subject': NEW_EXCHANGE_MESSAGE_SUBJECT.format(
-                    seed_owner.username, request.user.username),
-                'message': form.cleaned_data.get('message')
+                    seed_owner.username, request.user.username
+                ),
+                'message': form.cleaned_data.get('message'),
             }
             """ send email to the seed owner """
             send_mail_return = 0
@@ -83,32 +84,28 @@ def new_message(request, seed_id, owner_id):
                 )
 
             if send_mail_return == 1:
-                """ add success message """
+                """add success message."""
                 messages.success(
                     request, MESSAGE_SENT.format(request.user.username)
                 )
                 """ save discussion in database """
                 if not exchange_message_manager.save_exchange_message(
-                    **exchange_message_data):
+                    **exchange_message_data
+                ):
 
-                    """ add error message """
-                    messages.error( request, MESSAGE_SENT_BUT_SAVING_ERROR )
-                my_discussions = (
-                    exchange_message_manager.get_user_discussions(
-                    request.user)
+                    """add error message."""
+                    messages.error(request, MESSAGE_SENT_BUT_SAVING_ERROR)
+                my_discussions = exchange_message_manager.get_user_discussions(
+                    request.user
                 )
                 context = {'my_discussions': my_discussions}
                 return render(request, 'my_messages.html', context)
 
-
-
     new_message = NEW_EXCHANGE_MESSAGE_USER_MESSAGE.format(
-        seed_owner.username,
-        needed_seed.name,
-        list_of_proposed_seeds
+        seed_owner.username, needed_seed.name, list_of_proposed_seeds
     )
     new_message_form = NewMessageForm(initial={'message': new_message})
-    context ={'new_message_form': new_message_form}
+    context = {'new_message_form': new_message_form}
     return render(request, 'new_message.html', context)
 
 
@@ -123,19 +120,15 @@ def my_messages(request):
                 exchange_message_manager.delete_discussion(discussion_id)
             )
         except Http404:
-            exchange_message_manager_message.append(
-                {40: GLOBAL_ERROR_MSG }
-            )
-
+            exchange_message_manager_message.append({40: GLOBAL_ERROR_MSG})
 
     if exchange_message_manager_message:
         for message in exchange_message_manager_message:
             for level, content in message.items():
                 messages.add_message(request, level, content)
 
-    my_discussions = (
-        exchange_message_manager.get_user_discussions(
-        request.user)
+    my_discussions = exchange_message_manager.get_user_discussions(
+        request.user
     )
     context = {'my_discussions': my_discussions}
     return render(request, 'my_messages.html', context)

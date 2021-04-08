@@ -22,50 +22,61 @@ class TestAuthenticationViews(TestCase):
         self.log_form = {'username': 'test_name', 'password': 'test_password'}
 
     def test_login_succes(self):
-        response = self.client.post(reverse('authentication:login'), self.log_form)
+        response = self.client.post(
+            reverse('authentication:login'), self.log_form
+        )
         user = auth.get_user(self.client)
         self.assertEquals(user.is_authenticated, True)
         self.assertRedirects(response, reverse('trocgraines:homepage'))
 
     def test_login_fail(self):
         self.log_form['password'] = 'wrong_password'
-        response = self.client.post(reverse('authentication:login'), self.log_form)
+        self.client.post(
+            reverse('authentication:login'), self.log_form
+        )
         user = auth.get_user(self.client)
         self.assertEquals(user.is_authenticated, False)
 
     def test_registration_succes(self):
-        response = self.client.post(reverse('authentication:signup'), self.reg_form)
+        self.client.post(
+            reverse('authentication:signup'), self.reg_form
+        )
         self.assertTrue(
             self.User.objects.filter(
-                username=self.reg_form['username']).exists()
-            and
-            self.User.objects.filter(
-                email=self.reg_form['email']).exists()
+                username=self.reg_form['username']
+            ).exists()
+            and self.User.objects.filter(email=self.reg_form['email']).exists()
         )
 
     def test_registration_failure(self):
         self.reg_form['password2'] = 'wrong_password_2'
-        response = self.client.post(reverse('authentication:signup'), self.reg_form)
+        self.client.post(
+            reverse('authentication:signup'), self.reg_form
+        )
         self.assertFalse(
             self.User.objects.filter(
-                username=self.reg_form['username']).exists()
+                username=self.reg_form['username']
+            ).exists()
         )
-
 
     def test_logout_view_when_user_is_authenticated(self):
         self.client.login(**self.log_form)
-        response = self.client.get(reverse('authentication:logout'))
+        self.client.get(reverse('authentication:logout'))
         user = auth.get_user(self.client)
         self.assertTrue(user.is_anonymous)
 
     def test_if_user_can_change_display_personnal_info(self):
         self.client.login(**self.log_form)
-        response = self.client.get(reverse('authentication:personal_informations'))
+        response = self.client.get(
+            reverse('authentication:personal_informations')
+        )
         self.assertTemplateUsed(response, 'personal_informations.html')
 
     def test_if_user_can_display_personnal_info_update(self):
         self.client.login(**self.log_form)
-        response = self.client.get(reverse('authentication:personal_informations_update'))
+        response = self.client.get(
+            reverse('authentication:personal_informations_update')
+        )
         self.assertTemplateUsed(response, 'personal_informations_update.html')
 
     def test_if_user_can_change_their_personnal_info(self):
@@ -74,14 +85,14 @@ class TestAuthenticationViews(TestCase):
             'username_update': 'test_name_3',
             'email_update': 'test_mail_3@mail.com',
         }
-        response = self.client.post(
-            reverse('authentication:personal_informations_update'), new_data_form
+        self.client.post(
+            reverse('authentication:personal_informations_update'),
+            new_data_form,
         )
         modified_user = auth.get_user(self.client)
         self.assertTrue(
             modified_user.username == new_data_form['username_update']
-            and
-            modified_user.email == new_data_form['email_update']
+            and modified_user.email == new_data_form['email_update']
         )
 
     def test_if_user_can_change_his_password(self):
@@ -95,7 +106,9 @@ class TestAuthenticationViews(TestCase):
             reverse('authentication:password_update'), new_password_form
         )
         self.client.get(reverse('authentication:logout'))
-        self.log_form['password']='new_test_password'
-        response = self.client.post(reverse('authentication:login'), self.log_form)
+        self.log_form['password'] = 'new_test_password'
+        self.client.post(
+            reverse('authentication:login'), self.log_form
+        )
         user = auth.get_user(self.client)
         self.assertEquals(user.is_authenticated, True)

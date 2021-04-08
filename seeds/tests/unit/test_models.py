@@ -1,16 +1,15 @@
 from unittest import mock
-from django.db import utils
-from django.db.utils import IntegrityError, Error
-from django.test import RequestFactory, TestCase
 
-from seeds.models import SeedManager, Seed
+from django.db.utils import Error
+from django.test import TestCase
+
+from seeds.models import SeedManager
+
 
 class SeeModelsUnitTest(TestCase):
     def setUp(self):
-        self.new_data = {
-            'username': 'testusername2',
-            'email': 'testemail2'
-        }
+        self.new_data = {'username': 'testusername2', 'email': 'testemail2'}
+
         class MockUser:
             def __init__(self):
                 self.username = 'testusername'
@@ -53,8 +52,6 @@ class SeeModelsUnitTest(TestCase):
         self.test_seed_e = MockSeed_Error()
         self.seed_manager = SeedManager()
 
-
-
     def test_changes_seed_availability_success(self):
         with mock.patch(
             'seeds.models.get_object_or_404',
@@ -62,9 +59,8 @@ class SeeModelsUnitTest(TestCase):
         ):
 
             messages = self.seed_manager.changes_seed_availability('1234')
-            self.assertTrue (
-                self.test_seed.available == False
-                and messages == []
+            self.assertTrue(
+                self.test_seed.available is False and messages == []
             )
 
     def test_changes_seed_availability_error(self):
@@ -74,9 +70,7 @@ class SeeModelsUnitTest(TestCase):
         ):
 
             messages = self.seed_manager.changes_seed_availability('1234')
-            self.assertTrue (
-                 messages == [{40: 'Une erreur est survenue'}]
-            )
+            self.assertTrue(messages == [{40: 'Une erreur est survenue'}])
 
     def test_delete_seed_success(self):
         with mock.patch(
@@ -85,8 +79,15 @@ class SeeModelsUnitTest(TestCase):
         ):
 
             messages = self.seed_manager.delete_seed('1234')
-            self.assertTrue (
-                messages == [{40: 'Vous venez de supprimer : {}'.format(self.test_seed.name)}]
+            self.assertTrue(
+                messages
+                == [
+                    {
+                        40: 'Vous venez de supprimer : {}'.format(
+                            self.test_seed.name
+                        )
+                    }
+                ]
             )
 
     def test_delete_seed_error(self):
@@ -96,9 +97,8 @@ class SeeModelsUnitTest(TestCase):
         ):
 
             messages = self.seed_manager.delete_seed('1234')
-            self.assertTrue (
-                messages == [{40: 'Une erreur est survenue'}]
-            )
+            self.assertTrue(messages == [{40: 'Une erreur est survenue'}])
+
     def test_get_seed(self):
         with mock.patch(
             'seeds.models.get_object_or_404',
@@ -106,7 +106,4 @@ class SeeModelsUnitTest(TestCase):
         ):
 
             seed = self.seed_manager.get_seed('1234')
-            self.assertTrue (
-                 seed == self.test_seed
-            )
-    
+            self.assertTrue(seed == self.test_seed)

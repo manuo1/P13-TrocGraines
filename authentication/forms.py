@@ -15,27 +15,21 @@ class PersonalUserCreationForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
         widgets = {
             'username': forms.TextInput(
-                attrs={
-                    'placeholder': 'Visible par les autres utilisateurs'}
+                attrs={'placeholder': 'Visible par les autres utilisateurs'}
             ),
             'email': forms.EmailInput(
                 attrs={
-                    'placeholder':
-                    'Ne sera PAS visible par les autres utilisateurs'}
+                    'placeholder': (
+                        'Ne sera PAS visible par les autres utilisateurs')
+                }
             ),
         }
 
+
 class UserInformationUpdateForm(forms.Form):
     username_update = forms.CharField(
-        initial="",
-        max_length=100,
-        label='Nom d\'utilisateur',
-        disabled=False
-
+        initial="", max_length=100, label='Nom d\'utilisateur', disabled=False
     )
     email_update = forms.EmailField(
-        initial="",
-        max_length=100,
-        label='Email',
-        disabled=False
-        )
+        initial="", max_length=100, label='Email', disabled=False
+    )

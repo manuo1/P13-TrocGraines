@@ -1,12 +1,13 @@
 import os
-from trocgraines_config.settings.common import BASE_DIR
-from django.contrib import auth
+
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from django.test import Client, TestCase
 from django.urls import reverse
 
 from seeds.models import Seed
+from trocgraines_config.settings.common import BASE_DIR
+
 
 class TestSeedViews(TestCase):
     def setUp(self):
@@ -19,8 +20,7 @@ class TestSeedViews(TestCase):
         )
         self.log_form = {'username': 'test_name', 'password': 'test_password'}
         self.image_path = os.path.join(
-            BASE_DIR,
-            "static/assets/img/image_test.png"
+            BASE_DIR, "static/assets/img/image_test.png"
         )
         self.test_seed_data = {
             'name': 'test seed name 2',
@@ -29,38 +29,36 @@ class TestSeedViews(TestCase):
         }
 
     def test_user_can_add_a_seed(self):
-        """ test if user can add a seed """
+        """test if user can add a seed."""
         number_of_seeds_before = Seed.objects.count()
         new_seed = self.create_a_seed()
         number_of_seeds_after = Seed.objects.count()
-        self.assertTrue( new_seed is not None )
-        self.assertTrue( number_of_seeds_after > number_of_seeds_before)
+        self.assertTrue(new_seed is not None)
+        self.assertTrue(number_of_seeds_after > number_of_seeds_before)
 
     def test_user_can_delette_a_seed(self):
-        """ test if user can delette a seed """
+        """test if user can delette a seed."""
         new_seed = self.create_a_seed()
         number_of_seeds_before = Seed.objects.count()
         self.client.post(
-            reverse('seeds:my_seeds'),
-            {'delete_seed': new_seed.id}
+            reverse('seeds:my_seeds'), {'delete_seed': new_seed.id}
         )
         number_of_seeds_after = Seed.objects.count()
-        self.assertTrue( number_of_seeds_after < number_of_seeds_before )
+        self.assertTrue(number_of_seeds_after < number_of_seeds_before)
 
     def test_user_can_change_availability_of_a_seed(self):
-        """ test if user can change availability of a seed """
+        """test if user can change availability of a seed."""
         new_seed = self.create_a_seed()
         seed_availability_before = new_seed.available
         self.client.post(
-            reverse('seeds:my_seeds'),
-            {'seed_availability': new_seed.id}
+            reverse('seeds:my_seeds'), {'seed_availability': new_seed.id}
         )
-        modified_seed = get_object_or_404(Seed,pk=new_seed.id)
+        modified_seed = get_object_or_404(Seed, pk=new_seed.id)
         seed_availability_after = modified_seed.available
-        self.assertTrue( seed_availability_before != seed_availability_after )
+        self.assertTrue(seed_availability_before != seed_availability_after)
 
     def test_my_seeds_view_request_post_without_names(self):
-        """ test if my_seeds view post method without """
+        """test if my_seeds view post method without."""
         """ arg return right template """
         self.client.login(**self.log_form)
         response = self.client.post(reverse('seeds:my_seeds'))
@@ -71,6 +69,6 @@ class TestSeedViews(TestCase):
         self.client.login(**self.log_form)
         with open(self.image_path, 'rb') as img_data:
             self.test_seed_data['photo'] = img_data
-            self.client.post( reverse('seeds:add_seed'), self.test_seed_data )
-        new_seed = get_object_or_404( Seed, name=self.test_seed_data['name'] )
+            self.client.post(reverse('seeds:add_seed'), self.test_seed_data)
+        new_seed = get_object_or_404(Seed, name=self.test_seed_data['name'])
         return new_seed

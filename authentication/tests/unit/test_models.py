@@ -1,21 +1,21 @@
 from unittest import mock
-from django.db.utils import IntegrityError, Error
+
+from django.db.utils import Error, IntegrityError
 from django.test import TestCase
 
 from ...models import UsersManager
 
+
 class ModelsUnitTest(TestCase):
     def setUp(self):
-        self.new_data = {
-            'username': 'testusername2',
-            'email': 'testemail2'
-        }
+        self.new_data = {'username': 'testusername2', 'email': 'testemail2'}
 
         class MockUser:
             def __init__(self):
                 self.username = 'testusername'
                 self.email = 'testemail'
                 self.password = 'testpassword'
+
             def save(self):
                 pass
 
@@ -24,6 +24,7 @@ class ModelsUnitTest(TestCase):
                 self.username = 'testusername'
                 self.email = 'testemail'
                 self.password = 'testpassword'
+
             def save(self):
                 raise IntegrityError
 
@@ -32,6 +33,7 @@ class ModelsUnitTest(TestCase):
                 self.username = 'testusername'
                 self.email = 'testemail'
                 self.password = 'testpassword'
+
             def save(self):
                 raise Error
 
@@ -47,8 +49,7 @@ class ModelsUnitTest(TestCase):
             self.test_user, self.new_data
         )
         self.assertIn(
-            'Votre nom d’utilisateur a été modifié',
-            messages[0].values()
+            'Votre nom d’utilisateur a été modifié', messages[0].values()
         )
 
     def test_update_user_data_part_update_email(self):
@@ -56,10 +57,7 @@ class ModelsUnitTest(TestCase):
         messages = self.user_manager.update_user_data(
             self.test_user, self.new_data
         )
-        self.assertIn(
-            'Votre email a été modifié',
-            messages[0].values()
-        )
+        self.assertIn('Votre email a été modifié', messages[0].values())
 
     def test_update_user_data_with_username_integrityerror_exception(self):
         self.new_data['email'] = self.test_user_ie.email
@@ -67,8 +65,7 @@ class ModelsUnitTest(TestCase):
             self.test_user_ie, self.new_data
         )
         self.assertIn(
-            'Ce nom d\'utilisateur est déja utilisé',
-            messages[0].values()
+            'Ce nom d\'utilisateur est déja utilisé', messages[0].values()
         )
 
     def test_update_user_data_with_username_error_exception(self):
@@ -76,35 +73,26 @@ class ModelsUnitTest(TestCase):
         messages = self.user_manager.update_user_data(
             self.test_user_e, self.new_data
         )
-        self.assertIn(
-            'Une erreur est survenue',
-            messages[0].values()
-        )
+        self.assertIn('Une erreur est survenue', messages[0].values())
 
     def test_update_user_data_with_email_error_exception(self):
         self.new_data['username'] = self.test_user_e.username
         messages = self.user_manager.update_user_data(
             self.test_user_e, self.new_data
         )
-        self.assertIn(
-            'Une erreur est survenue',
-            messages[0].values()
-        )
+        self.assertIn('Une erreur est survenue', messages[0].values())
+
     def test_update_user_data_with_email_integrityerror_error_exception(self):
         self.new_data['username'] = self.test_user_ie.username
         messages = self.user_manager.update_user_data(
             self.test_user_ie, self.new_data
         )
-        self.assertIn(
-            'Cet email est déja utilisé',
-            messages[0].values()
-        )
+        self.assertIn('Cet email est déja utilisé', messages[0].values())
+
     def get_user(self):
         with mock.patch(
             'seeds.models.get_object_or_404',
             return_value=self.test_user,
         ):
             user = self.user_manager.get_user('1234')
-            self.assertTrue (
-                 user == self.test_user
-            )
+            self.assertTrue(user == self.test_user)

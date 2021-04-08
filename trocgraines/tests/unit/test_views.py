@@ -1,5 +1,3 @@
-from unittest import mock
-
 from django.test import RequestFactory, TestCase
 
 from trocgraines.views import homepage

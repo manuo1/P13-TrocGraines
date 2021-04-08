@@ -1,9 +1,9 @@
 HELLO_MSG = 'Content de vous revoir {}'
-                                  # {} will be the username
+# {} will be the username
 GOODBYE_MSG = 'Vous êtes déconnecté(e), au revoir {}'
-                                                # {} will be the username
+# {} will be the username
 WELCOME_MSG = 'Bienvenu sur Troc Graine {}, heureux de vous connaître'
-                                      # {} will be the username
+# {} will be the username
 PSW_CHANGE_CONFIRM_MSG = 'Votre mot de passe a été modifié'
 
 USERNAME_CHANGE_CONFIRM_MSG = 'Votre nom d’utilisateur a été modifié'

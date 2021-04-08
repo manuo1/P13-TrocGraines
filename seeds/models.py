@@ -1,25 +1,22 @@
-from django.shortcuts import get_object_or_404
-from django.contrib.postgres.search import SearchQuery, SearchVector
-from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.db import models, Error
-from .text_constants import (
-    GLOBAL_ERROR_MSG,
-    SEED_DELETED_MSG,
-)
+from django.contrib.postgres.search import SearchQuery, SearchVector
+from django.db import Error, models
+from django.shortcuts import get_object_or_404
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 
+from .text_constants import GLOBAL_ERROR_MSG, SEED_DELETED_MSG
+
 user = get_user_model()
 
-class SeedManager(models.Manager):
 
+class SeedManager(models.Manager):
     def get_last_seeds_added(self):
-        """ return last added seeds """
+        """return last added seeds."""
         matching_list = []
         matching_list = Seed.objects.all().order_by(
-                                            '-available',
-                                            '-creation_date')
+            '-available', '-creation_date'
+        )
         return matching_list
 
     def find_matching_seeds_to(self, searched_seed):
@@ -36,7 +33,8 @@ class SeedManager(models.Manager):
         """returns a list of user seeds."""
         matching_list = []
         matching_list = Seed.objects.filter(owner=user).order_by(
-            '-creation_date')
+            '-creation_date'
+        )
         return matching_list
 
     def changes_seed_availability(self, seed_id):
@@ -52,7 +50,7 @@ class SeedManager(models.Manager):
         return messages
 
     def delete_seed(self, seed_id):
-        messages =''
+        messages = ''
         seed = get_object_or_404(Seed, pk=seed_id)
         try:
             seed_name = seed.name
@@ -66,14 +64,17 @@ class SeedManager(models.Manager):
         seed = get_object_or_404(Seed, pk=seed_id)
         return seed
 
+
 class Seed(models.Model):
 
     name = models.CharField(max_length=100)
     description = models.TextField()
-    photo = ProcessedImageField(upload_to='images/',
-                                   processors=[ResizeToFill(640, 360)],
-                                   format='JPEG',
-                                   options={'quality': 60})
+    photo = ProcessedImageField(
+        upload_to='images/',
+        processors=[ResizeToFill(640, 360)],
+        format='JPEG',
+        options={'quality': 60},
+    )
     creation_date = models.DateTimeField(auto_now_add=True)
     available = models.BooleanField(default=True)
     owner = models.ForeignKey(user, on_delete=models.CASCADE)

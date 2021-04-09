@@ -21,7 +21,7 @@ class ExchangeMessageManager(models.Manager):
             exchange_message.save()
             discussion.save()
             return True
-        except Error:
+        except Error as e:
             return None
 
     def get_user_discussions(slef, user):
@@ -44,7 +44,7 @@ class ExchangeMessageManager(models.Manager):
 
 class ExchangeMessage(models.Model):
     recipient = models.ForeignKey(User, on_delete=models.CASCADE)
-    subject = models.CharField(max_length=100)
+    subject = models.CharField(max_length=250)
     message = models.TextField()
     sending_date = models.DateTimeField(auto_now_add=True)
 

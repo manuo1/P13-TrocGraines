@@ -114,3 +114,4 @@ class TestExchangeMessagesViews(TestCase):
         self.assertTrue(
             number_of_discussion_before != number_of_discussion_after
         )
+    

@@ -37,7 +37,7 @@ def new_message(request, seed_id, owner_id):
     if proposed_seeds_list:
         list_of_seed_names = []
         for seed in proposed_seeds_list:
-            if not seed.available:
+            if seed.available is not True:
                 list_of_seed_names.append(
                     NEW_EXCHANGE_MESSAGE_SEED_NOT_AVAILABLE.format(seed.name)
                 )

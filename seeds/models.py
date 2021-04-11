@@ -11,6 +11,8 @@ user = get_user_model()
 
 
 class SeedManager(models.Manager):
+    """ manager for seed model """
+
     def get_last_seeds_added(self):
         """return last added seeds."""
         matching_list = []
@@ -38,6 +40,7 @@ class SeedManager(models.Manager):
         return matching_list
 
     def changes_seed_availability(self, seed_id):
+        """ change the seed seed availability """
         messages = []
         seed = get_object_or_404(Seed, pk=seed_id)
         seed_old_state = seed.available
@@ -50,6 +53,7 @@ class SeedManager(models.Manager):
         return messages
 
     def delete_seed(self, seed_id):
+        """ delete a seed """
         messages = ''
         seed = get_object_or_404(Seed, pk=seed_id)
         try:

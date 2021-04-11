@@ -29,11 +29,14 @@ exchange_message_manager = ExchangeMessageManager()
 
 @login_required()
 def new_message(request, seed_id, owner_id):
+    """ prepare the message and send it """
+
     seed_owner = user_manager.get_user(owner_id)
     needed_seed = seed_manager.get_seed(seed_id)
     proposed_seeds_list = seed_manager.get_user_seeds(request.user.id)
     list_of_proposed_seeds = NEW_EXCHANGE_MESSAGE_NO_SEED_TO_EXCHANGE
 
+    """ create list of user seeds """
     if proposed_seeds_list:
         list_of_seed_names = []
         for seed in proposed_seeds_list:
@@ -48,6 +51,7 @@ def new_message(request, seed_id, owner_id):
     if request.method == 'POST':
         form = NewMessageForm(request.POST)
         if form.is_valid():
+            """ build the full message """
             exchange_message_data = {
                 'recipient': seed_owner,
                 'sender': request.user,
@@ -111,6 +115,8 @@ def new_message(request, seed_id, owner_id):
 
 @login_required()
 def my_messages(request):
+    """ display / delete user messages """
+
     exchange_message_manager_message = []
 
     if request.method == 'POST':

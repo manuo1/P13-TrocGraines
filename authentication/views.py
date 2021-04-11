@@ -62,6 +62,7 @@ class PersonalPasswordChangeView(PasswordChangeView):
 
 @login_required()
 def personalInformations(request):
+    """ display user's personnal informations """
 
     user_update_form = UserInformationUpdateForm(
         initial={
@@ -83,6 +84,7 @@ def personalInformations(request):
 
 @login_required()
 def personalInformationsUpdate(request):
+    """ modify user's personnal informations """
 
     user_update_form = UserInformationUpdateForm(
         initial={
@@ -99,6 +101,7 @@ def personalInformationsUpdate(request):
                 'username': completed_form.cleaned_data.get('username_update'),
                 'email': completed_form.cleaned_data.get('email_update'),
             }
+            """ ask manager to change datas """
             messages_from_user_manager = user_manager.update_user_data(
                 request.user, new_user_data
             )

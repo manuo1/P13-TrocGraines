@@ -7,7 +7,12 @@ from .text_constants import DELETED_MSG, GLOBAL_ERROR_MSG
 
 
 class ExchangeMessageManager(models.Manager):
+
+    """ manager for exchange messages """
+
     def save_exchange_message(self, **exchange_message_data):
+        """ save new exchange messages """
+
         exchange_message = ExchangeMessage(
             recipient=exchange_message_data['recipient'],
             subject=exchange_message_data['subject'],
@@ -25,6 +30,8 @@ class ExchangeMessageManager(models.Manager):
             return None
 
     def get_user_discussions(slef, user):
+        """ return user discutions """
+
         discussions = []
         discussions = Discussion.objects.filter(sender=user).order_by(
             '-exchange_message'
@@ -32,6 +39,8 @@ class ExchangeMessageManager(models.Manager):
         return discussions
 
     def delete_discussion(self, discussion_id):
+        """ delete discution """
+
         messages = ''
         discussion = get_object_or_404(Discussion, pk=discussion_id)
         try:

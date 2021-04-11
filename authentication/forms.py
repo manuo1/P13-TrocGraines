@@ -6,9 +6,7 @@ User = get_user_model()
 
 
 class PersonalUserCreationForm(UserCreationForm):
-    """addition of additional fields to the basic user profile."""
-
-    """ and the form-control class for bootstrap"""
+    """ custom parameters of the user account creation form """
 
     class Meta:
         model = User
@@ -27,6 +25,8 @@ class PersonalUserCreationForm(UserCreationForm):
 
 
 class UserInformationUpdateForm(forms.Form):
+    """ form used to modify the user's personal information """
+    
     username_update = forms.CharField(
         initial="", max_length=100, label='Nom d\'utilisateur', disabled=False
     )

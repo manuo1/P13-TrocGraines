@@ -26,6 +26,7 @@ class CreateSeedView(LoginRequiredMixin, CreateView):
 
 @login_required()
 def my_seeds(request):
+    """ display seeds / change availability / delete seed """
     seed_manager_message = []
 
     if request.method == 'POST':

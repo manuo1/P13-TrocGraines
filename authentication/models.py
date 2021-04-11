@@ -9,6 +9,8 @@ from .text_constants import (EMAIL_CHANGE_CONFIRM_MSG,
 
 
 class User(AbstractUser):
+    """ custom user model """
+
     ranking = models.SmallIntegerField(default=100)
     email = models.EmailField(unique=True)
 
@@ -20,6 +22,8 @@ class UsersManager(models.Manager):
     """addition of a manager to the User class."""
 
     def update_user_data(self, user, new_data):
+        """ update user's personal information """
+
         messages = []
         previous_user_data = {'username': user.username, 'email': user.email}
         """ try to change the username if it is different """
@@ -50,5 +54,6 @@ class UsersManager(models.Manager):
         return messages
 
     def get_user(slef, user_id):
+        """ return user from is id """
         user = get_object_or_404(User, pk=user_id)
         return user

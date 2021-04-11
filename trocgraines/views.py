@@ -8,6 +8,7 @@ seed_manger = SeedManager()
 
 
 def homepage(request):
+    """ display homepage / search seed form / seed results """
     if request.method == 'POST':
         search_form = SeedSearchForm(request.POST)
         if search_form.is_valid():
@@ -17,6 +18,7 @@ def homepage(request):
         searched_seed = ''
         matching_list = seed_manger.get_last_seeds_added()
 
+    """ add paginator """
     paginator = Paginator(matching_list, 8)  # Show 8 seeds per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
